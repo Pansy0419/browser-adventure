@@ -1,0 +1,203 @@
+body{
+    background-color: rgb(109,190, 200);
+    margin: 0;
+    font-family: 'Press Start 2P';
+}
+
+.outer-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+h1{
+    text-align: center;
+    letter-spacing: .1em;
+    font-size: 3em;
+    margin: 0;
+    line-height: 1.5em;
+}
+
+p{
+    text-align: center;
+}
+
+.characters-container{
+    position: relative;
+    height: 160px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:200px;
+    margin: 0em auto 2em auto;
+    position: relative;
+}
+.keys-container{
+    display: grid;
+    grid-gap: 0.5em;
+    margin: 0 auto;
+    width: fit-content;
+    margin-bottom: 2em;
+}
+
+.key{
+    background-color: lightgray;
+    border: 2px solid black;
+    border-radius: 4px;
+    box-shadow: none;
+    padding: 0.5em;
+    margin: 0;
+    animation: changeColor 1s infinite;
+}
+
+.key-W{
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.key-A{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.key-S{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.key-D{
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.knight, .princess{
+    animation-play-state: running;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background-size: cover;
+}
+
+.knight{
+    width: 95px;
+    height: 160px;
+    background-image: url('assets/knight_stand_title.png');
+    -webkit-animation: animKightTitle 1200ms steps(8) infinite;
+    animation: animKightTitle 1200ms steps(8) infinite;
+}
+
+@keyframes animKightTitle {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 760px 0px;
+    }
+}
+
+.princess{
+    width: 80px;
+    height: 160px;
+    background-image: url('assets/princess_stand.png');
+    -webkit-animation: animPricessStand 1000ms steps(4) infinite;
+    animation: animPricessStand 1000ms steps(4) infinite;
+}
+
+@keyframes animPricessStand {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 320px 0px;
+    }
+}
+
+.buttons{
+    display: inline-flex;
+    margin: 0 auto;
+}
+
+.buttons span{
+    font-size: .7em;
+}
+
+.buttons .play{
+    background: white;
+}
+
+button{
+    margin: 2em .5em;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    padding: .5em 1em;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Press Start 2P';
+    border: 3px solid black;
+    font-size: 1.2em;
+    background: lightgrey;
+}
+
+button.play:hover{
+    background-color: lightgrey;
+    box-shadow: inset 0 0 5px #000000;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-image: url('./assets/land.png');
+    background-repeat: repeat-x;
+    height: 15%;
+    animation: animLand 2516ms linear infinite;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+footer p{
+    font-size: .8em;
+}
+
+@keyframes animLand {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: -335px 0px;
+    }
+}
+
+@keyframes changeColor {
+    0% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow: none;
+    }
+    90%{
+        box-shadow: none;
+    }
+    100% {
+        box-shadow: inset 0 0 5px #000000;
+    }
+}
+
+#mobile-message{
+    display: none;
+    width: 80%;
+    margin: 0 auto;
+    font-family: monospace;
+}
+
+#mobile-message.mobile{
+    display: block;
+}
