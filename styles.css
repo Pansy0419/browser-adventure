@@ -118,8 +118,9 @@ p{
 }
 
 .buttons{
-    display: inline-flex;
+    display: flex;
     margin: 0 auto;
+    justify-content: center;
 }
 
 .buttons span{
@@ -154,10 +155,6 @@ footer{
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-image: url('./assets/land.png');
-    background-repeat: repeat-x;
-    height: 15%;
-    animation: animLand 2516ms linear infinite;
     justify-content: center;
     display: flex;
     align-items: center;
