@@ -75,7 +75,7 @@ p{
     grid-row: 2;
 }
 
-.knight, .princess{
+.adventurer, .princess{
     animation-play-state: running;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
@@ -83,10 +83,10 @@ p{
     background-size: cover;
 }
 
-.knight{
+.adventurer{
     width: 95px;
     height: 160px;
-    background-image: url('assets/knight_stand_title.png');
+    background-image: url('assets/adventurer_stand_title.png');
     -webkit-animation: animKightTitle 1200ms steps(8) infinite;
     animation: animKightTitle 1200ms steps(8) infinite;
 }
