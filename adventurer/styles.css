@@ -1,0 +1,34 @@
+.sprite{
+    background-image: url('../assets/adventurer_stand.png');
+    animation-play-state: running;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background-size: cover;
+    width: 110px;
+    height: 160px;
+    -webkit-animation: animStand 3s steps(13) infinite;
+    animation: animStand 3s steps(13) infinite;
+    margin: auto;
+}
+
+@keyframes animRunRight {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 880px 0px;
+    }
+}
+
+@keyframes animStand {
+    0% {
+        background-position: 0px 0px;
+    }
+    50% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 1430px 0px;
+    }
+}
