@@ -9,7 +9,7 @@ window.onload = () => {
                 location=no,
                 status=1,
                 scrollbars=no,
-                width=200,
+                width=226,
                 height=200,
                 screenX=0,
                 screenY=${window.outerHeight}

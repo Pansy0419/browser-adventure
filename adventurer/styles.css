@@ -12,7 +12,19 @@
     margin: auto;
 }
 
-@keyframes animRunRight {
+.runRight{
+    -webkit-animation: animRun 800ms steps(8) infinite;
+    animation: animRun 800ms steps(8) infinite;
+    background-image: url('../assets/adventurer_run_right.png');
+}
+
+.runLeft{
+    -webkit-animation: animRun 800ms steps(8) infinite;
+    animation: animRun 800ms steps(8) infinite;
+    background-image: url('../assets/adventurer_run_left.png');
+}
+
+@keyframes animRun {
     0% {
         background-position: 0px 0px;
     }
