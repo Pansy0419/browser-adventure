@@ -87,12 +87,15 @@ p{
     width: 95px;
     height: 160px;
     background-image: url('assets/adventurer_stand_title.png');
-    -webkit-animation: animKightTitle 1200ms steps(8) infinite;
-    animation: animKightTitle 1200ms steps(8) infinite;
+    -webkit-animation: animAdventurer 2s steps(8) infinite;
+    animation: animAdventurer 2s steps(8) infinite;
 }
 
-@keyframes animKightTitle {
+@keyframes animAdventurer {
     0% {
+        background-position: 0px 0px;
+    }
+    30% {
         background-position: 0px 0px;
     }
     100% {
@@ -104,12 +107,15 @@ p{
     width: 80px;
     height: 160px;
     background-image: url('assets/princess_stand.png');
-    -webkit-animation: animPricessStand 1000ms steps(4) infinite;
-    animation: animPricessStand 1000ms steps(4) infinite;
+    -webkit-animation: animPricess 1.5s steps(4) infinite;
+    animation: animPricess 1.5s steps(4) infinite;
 }
 
-@keyframes animPricessStand {
+@keyframes animPricess {
     0% {
+        background-position: 0px 0px;
+    }
+    50% {
         background-position: 0px 0px;
     }
     100% {
@@ -164,23 +170,11 @@ footer p{
     font-size: .8em;
 }
 
-@keyframes animLand {
-    0% {
-        background-position: 0px 0px;
-    }
-    100% {
-        background-position: -335px 0px;
-    }
-}
-
 @keyframes changeColor {
     0% {
         box-shadow: none;
     }
-    50% {
-        box-shadow: none;
-    }
-    90%{
+    80%{
         box-shadow: none;
     }
     100% {
