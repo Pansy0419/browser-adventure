@@ -12,6 +12,17 @@
     margin: auto;
 }
 
+canvas {
+    position: absolute;
+    left: -96px;
+    top: 0;
+    /* height: 200px;
+    height: 200px; */
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
 .runRight{
     -webkit-animation: animRun 800ms steps(8) infinite;
     animation: animRun 800ms steps(8) infinite;
