@@ -46,7 +46,17 @@ window.onload = () => {
         });
 
         adventurerWindow.addEventListener("keydown", event => {
-            if (adventurer != undefined && ["w", "a", "s", "d"].includes(event.key)) {
+            if (adventurer != undefined 
+                && [
+                    "w", 
+                    "a", 
+                    "s", 
+                    "d", 
+                    "ArrowRight", 
+                    "ArrowLeft", 
+                    "ArrowUp", 
+                    "ArrowDown"
+                ].includes(event.key)) {
                 move(event.key);
                 if (checkCollision()) {
                     // TODO: display ending
@@ -55,7 +65,17 @@ window.onload = () => {
         });
 
         adventurerWindow.addEventListener("keyup", event => {
-            if (adventurer != undefined && ["w", "a", "s", "d"].includes(event.key)) {
+            if (adventurer != undefined 
+                && [
+                    "w", 
+                    "a", 
+                    "s", 
+                    "d", 
+                    "ArrowRight", 
+                    "ArrowLeft", 
+                    "ArrowUp", 
+                    "ArrowDown"
+                ].includes(event.key)) {
                 finishAnim(event.key);
             }
         });
@@ -111,13 +131,13 @@ const getFileData = (file) => {
 
 const move = (key) => {
     if (adventurer.classList.length >= 2) {
-        if (key === 'a') {
+        if (key === 'a' || key === 'ArrowLeft') {
             adventurer.classList.replace('runRight', 'runLeft'); 
-        } else if (key === 'd') {
+        } else if (key === 'd' || key === 'ArrowRight') {
             adventurer.classList.replace('runLeft', 'runRight'); 
         }
     } else if (adventurer.classList.length < 2) {
-        if (key === 'a') {
+        if (key === 'a' || key === 'ArrowLeft') {
             adventurer.classList.add('runLeft'); 
         } else {
             adventurer.classList.add('runRight');
@@ -129,32 +149,37 @@ const move = (key) => {
 }
 
 const frameFunc = (key) => {
-    if (key === 'w') {
-        return () => {
-            adventurerWindow.moveBy(0, -RUN_SPEED);
-            const top = parseInt(getComputedStyle(canvas).top);
-            canvas.style.top = (top + RUN_SPEED) + "px";
-        }
-    } else if (key === 'a') {
-        return () => { 
-            adventurerWindow.moveBy(-RUN_SPEED, 0);
-            const left = parseInt(getComputedStyle(canvas).left);
-            canvas.style.left = (left + RUN_SPEED) + "px";
-        }
-    } else if (key === 's') {
-        return () => {
-            adventurerWindow.moveBy(0, RUN_SPEED);
-            const top = parseInt(getComputedStyle(canvas).top);
-            canvas.style.top = (top - RUN_SPEED) + "px";
-        }
-    } else if (key === 'd') {
-        return () => {
-            adventurerWindow.moveBy(RUN_SPEED, 0);
-            const left = parseInt(getComputedStyle(canvas).left);
-            canvas.style.left = (left - RUN_SPEED) + "px";
-        }
-    } else {
-        return () => {};
+    switch(key) {
+        case 'w':
+        case 'ArrowUp':
+            return () => {
+                adventurerWindow.moveBy(0, -RUN_SPEED);
+                const top = parseInt(getComputedStyle(canvas).top);
+                canvas.style.top = (top + RUN_SPEED) + "px";
+            };
+        case 'a':
+        case 'ArrowLeft':
+            return () => { 
+                adventurerWindow.moveBy(-RUN_SPEED, 0);
+                const left = parseInt(getComputedStyle(canvas).left);
+                canvas.style.left = (left + RUN_SPEED) + "px";
+            };
+        case 's':
+        case 'ArrowDown':
+            return () => {
+                adventurerWindow.moveBy(0, RUN_SPEED);
+                const top = parseInt(getComputedStyle(canvas).top);
+                canvas.style.top = (top - RUN_SPEED) + "px";
+            };
+        case 'd':
+        case 'ArrowRight':
+            return () => {
+                adventurerWindow.moveBy(RUN_SPEED, 0);
+                const left = parseInt(getComputedStyle(canvas).left);
+                canvas.style.left = (left - RUN_SPEED) + "px";
+            };
+        default:
+            break;
     }
 }
 

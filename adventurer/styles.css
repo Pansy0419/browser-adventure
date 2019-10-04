@@ -12,6 +12,10 @@
     margin: auto;
 }
 
+body {
+    overflow: hidden;
+}
+
 canvas {
     position: absolute;
     left: 0px;
