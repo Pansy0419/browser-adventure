@@ -1,9 +1,12 @@
 const startButton = document.getElementsByClassName('play')[0];
 let adventurerWindow;
 let princessWindow;
-var adventurer;
+let canvas;
+let adventurer;
 var animIds = new Map();
 const RUN_SPEED = 1;
+const ASSET_TILE_SIZE = 32;
+const BACKGROUND_TILE_SIZE = 96;
 
 window.onload = () => {
     startButton.onclick = () => {
@@ -39,6 +42,7 @@ window.onload = () => {
 
         adventurerWindow.addEventListener("load", event => {
             adventurer = adventurerWindow.document.getElementsByClassName('sprite')[0];
+            drawBackground();
         });
 
         adventurerWindow.addEventListener("keydown", event => {
@@ -61,6 +65,41 @@ window.onload = () => {
 const checkCollision = () => {
     return adventurerWindow.screenX + adventurerWindow.outerWidth >= princessWindow.screenX
         && adventurerWindow.screenY - adventurerWindow.outerHeight <= princessWindow.screenY;
+}
+
+const drawBackground = () => {
+    const data = getFileData('utils/level1.txt');
+    const lines = data.split(/\r?\n/);
+
+    const asset = new Image();
+    canvas = adventurerWindow.document.getElementsByTagName('canvas')[0];
+    const ctx = canvas.getContext('2d');
+    ctx.canvas.width  = 1440;
+    ctx.canvas.height = 864;
+    ctx.imageSmoothingEnabled = false;
+
+    asset.onload = function() {
+        for (const i in lines) {
+            const tiles = lines[i].split(' ');
+            for (const j in tiles) {
+                const layers = tiles[j].split(',');
+                for (const k in layers) {
+                    const cord = BACKGROUND_TILES[layers[k]];
+                    ctx.drawImage(
+                        asset, 
+                        cord[0] * ASSET_TILE_SIZE,
+                        cord[1] * ASSET_TILE_SIZE, 
+                        ASSET_TILE_SIZE,
+                        ASSET_TILE_SIZE,
+                        j * BACKGROUND_TILE_SIZE,
+                        i * BACKGROUND_TILE_SIZE,
+                        BACKGROUND_TILE_SIZE,
+                        BACKGROUND_TILE_SIZE);
+                }
+            }
+        }
+    };
+    asset.src = 'assets/background.png';
 }
 
 const getFileData = (file) => {
@@ -91,13 +130,29 @@ const move = (key) => {
 
 const frameFunc = (key) => {
     if (key === 'w') {
-        return () => adventurerWindow.moveBy(0, -RUN_SPEED);
+        return () => {
+            adventurerWindow.moveBy(0, -RUN_SPEED);
+            const top = parseInt(getComputedStyle(canvas).top);
+            canvas.style.top = (top + RUN_SPEED) + "px";
+        }
     } else if (key === 'a') {
-        return () => adventurerWindow.moveBy(-RUN_SPEED, 0);
+        return () => { 
+            adventurerWindow.moveBy(-RUN_SPEED, 0);
+            const left = parseInt(getComputedStyle(canvas).left);
+            canvas.style.left = (left + RUN_SPEED) + "px";
+        }
     } else if (key === 's') {
-        return () => adventurerWindow.moveBy(0, RUN_SPEED);
+        return () => {
+            adventurerWindow.moveBy(0, RUN_SPEED);
+            const top = parseInt(getComputedStyle(canvas).top);
+            canvas.style.top = (top - RUN_SPEED) + "px";
+        }
     } else if (key === 'd') {
-        return () => adventurerWindow.moveBy(RUN_SPEED, 0);
+        return () => {
+            adventurerWindow.moveBy(RUN_SPEED, 0);
+            const left = parseInt(getComputedStyle(canvas).left);
+            canvas.style.left = (left - RUN_SPEED) + "px";
+        }
     } else {
         return () => {};
     }

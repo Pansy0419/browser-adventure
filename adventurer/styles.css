@@ -14,13 +14,12 @@
 
 canvas {
     position: absolute;
-    left: -96px;
-    top: 0;
-    /* height: 200px;
-    height: 200px; */
+    left: 0px;
+    top: -664px;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+    z-index: -1;
 }
 
 .runRight{
