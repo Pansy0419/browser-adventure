@@ -68,7 +68,7 @@ const checkCollision = () => {
 }
 
 const drawBackground = () => {
-    const data = getFileData('utils/level1.txt');
+    const data = getFileData('levels/level1.txt');
     const lines = data.split(/\r?\n/);
 
     const asset = new Image();
