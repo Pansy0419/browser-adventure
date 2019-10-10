@@ -1,4 +1,8 @@
 let canvas;
+const path = new Array(9);
+for (var i = 0; i < path.length; i++) {
+    path[i] = new Array(16).fill(0);
+}
 
 const drawBackground = () => {
     const data = getFileData('levels/level1.txt');
@@ -27,12 +31,20 @@ const drawBackground = () => {
                         j * BACKGROUND_TILE_SIZE,
                         i * BACKGROUND_TILE_SIZE,
                         BACKGROUND_TILE_SIZE,
-                        BACKGROUND_TILE_SIZE);
+                        BACKGROUND_TILE_SIZE)
+                    ;
+
+                    if (k == layers.length - 1 
+                        && /^[a-zA-Z()]$/.test(layers[k])) {
+                        path[i][j] = 1;
+                    }
                 }
             }
         }
     };
     asset.src = 'assets/background.png';
+
+    console.log(path);
 }
 
 const getFileData = (file) => {

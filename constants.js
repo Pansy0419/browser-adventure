@@ -11,6 +11,11 @@ const DIRECTION_KEYS = {
     "ArrowUp" : "UP",
     "ArrowDown": "DOWN",
 }
+const SPRITE_HEIGHT = 160;
+const SPRITE_WIDTH = 96;
+const SPRITE_WINDOW_INNER_HEIGHT = 200;
+const SPRITE_WINDOW_WIDTH = 226;
+const SPRITE_WINDOW_OUTER_HEIGHT = 223;
 const BACKGROUND_TILES = {
     "A": [0,0],
     "B": [1,0],
