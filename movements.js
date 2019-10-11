@@ -88,6 +88,14 @@ const frameFunc = (win, dir) => {
 // (x,y) is the center position of the character window/ character
 // sprite after the intended move
 const canMove = (x, y) => {
+    if (x - SPRITE_WINDOW_WIDTH / 2 < 0 
+        || x + SPRITE_WINDOW_WIDTH / 2 > window.outerWidth)
+        return false;
+
+    // magic, don't touch
+    if (y < 148 || y + 102 > window.outerHeight)
+        return false;
+    
     const getXIndex = (x) => Math.floor(x / BACKGROUND_TILE_SIZE);
     const getYIndex = (y) => Math.floor(y / BACKGROUND_TILE_SIZE);
     
