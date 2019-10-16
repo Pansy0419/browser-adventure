@@ -1,0 +1,102 @@
+body{
+    background-color: rgb(109,190, 200);
+    margin: 0;
+    font-family: 'Press Start 2P';
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-container {
+    flex:1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.canvas, .picker{
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.canvas {
+    width: 960px;
+    height: 576px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 64px);
+    grid-template-rows: repeat(auto-fill, 64px);
+}
+
+.canvas-container {
+    margin: 0 16px 0 48px
+}
+
+button{
+    align-content: center;
+    justify-content: center;
+    padding: .5em 1em;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Press Start 2P';
+    border: 2px solid black;
+    background: white;
+}
+
+button:hover{
+    background-color: lightgray;
+    box-shadow: inset 0 0 3px #000000;
+}
+
+
+.picker {
+    flex: 1;
+    height: 100%;
+    margin: 0 48px 0 16px;
+    display: grid;
+    grid-gap: 0.5em;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(auto-fill, 64px);
+    overflow: scroll;
+}
+
+.tile-preview {
+    background-image: url(../assets/background.png);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background-size: 512px 1216px;
+    height: 64px;
+    width: 64px;
+    border: 2px solid black;
+}
+
+.tile-layer {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background-size: 512px 1216px;
+    background-image: url(../assets/background.png);
+    height: 64px;
+    width: 64px;
+    position: absolute;
+}
+
+canvas{
+    grid-column: 1 / span 16;
+    grid-row: 1 / span 9;
+    z-index: 100;
+    position: absolute;
+    margin: 8px;
+    pointer-events: none;
+}
