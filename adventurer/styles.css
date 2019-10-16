@@ -20,9 +20,6 @@ canvas {
     position: absolute;
     left: 0px;
     top: -664px;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
     z-index: -1;
 }
 

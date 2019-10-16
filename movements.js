@@ -99,10 +99,6 @@ const canMove = (x, y) => {
     const getXIndex = (x) => Math.floor(x / BACKGROUND_TILE_SIZE);
     const getYIndex = (y) => Math.floor(y / BACKGROUND_TILE_SIZE);
     
-    console.log(getYIndex(y + SPRITE_HEIGHT / 2), getXIndex(x - SPRITE_WIDTH / 2));
-    console.log(getYIndex(y + SPRITE_HEIGHT / 2), getXIndex(x + SPRITE_WIDTH / 2));
-    console.log(getYIndex(y + SPRITE_HEIGHT / 4), getXIndex(x - SPRITE_WIDTH / 2));
-    console.log(getYIndex(y + SPRITE_HEIGHT / 4), getXIndex(x + SPRITE_WIDTH / 2));
     return path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x - SPRITE_WIDTH / 2)]
     && path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x + SPRITE_WIDTH / 2)]
     && path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x - SPRITE_WIDTH / 2)]
