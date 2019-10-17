@@ -68,7 +68,7 @@ const loadCanvas = () => {
             const div = document.createElement("div");
             div.classList.add('tile-canvas');
             
-            loadCanvasTileOverlay(div);
+            loadCanvasTileOverlay(div, i, j);
 
             div.ondrop = (ev) => {
                 ev.preventDefault();
@@ -90,27 +90,42 @@ const loadCanvas = () => {
     }
 }
 
-const loadCanvasTileOverlay = (tile) => {
+const loadCanvasTileOverlay = (tile, x, y) => {
     const overlay = document.createElement("div");
     overlay.classList.add("tile-overlay");
     tile.appendChild(overlay);
 
-    tile.ondragover = (ev) => {
-        ev.preventDefault();
-        overlay.style.background = 'rgba(0,0,0,0.2)';
-    }
+    const trashIcon = new Image(24, 24);
+    trashIcon.onload = () => {
+        const button = document.createElement('button');
+        button.classList.add('delete');
+        button.appendChild(trashIcon);
+        button.onclick = () => {
+            clearTile(tile, x, y);
+        }
+        overlay.appendChild(button);
 
-    tile.ondragleave = () => {
-        overlay.style.background = 'transparent';
-    }
+        tile.ondragover = (ev) => {
+            ev.preventDefault();
+            overlay.style.background = 'rgba(0,0,0,0.2)';
+        }
 
-    tile.onmouseenter = () => {
-        overlay.style.background = 'rgba(0,0,0,0.2)';
-    }
+        tile.ondragleave = () => {
+            overlay.style.background = 'transparent';
+            
+        }
 
-    tile.onmouseleave = () => {
-        overlay.style.background = 'transparent';
+        tile.onmouseenter = () => {
+            overlay.style.background = 'rgba(0,0,0,0.2)';
+            button.style.visibility = 'visible';
+        }
+
+        tile.onmouseleave = () => {
+            overlay.style.background = 'transparent';
+            button.style.visibility = 'hidden';
+        }
     }
+    trashIcon.src = '../assets/trash-can.png'
 }
 
 const loadButtons = () => {
@@ -139,4 +154,14 @@ const clearCanvas = () => {
     for (var i = 0; i < tiles.length; i++) {
         tiles[i] = new Array(15).fill('');
     }
+}
+
+const clearTile = (tile, x, y) => {
+    let layer = tile.lastElementChild;
+    while(tile.childElementCount > 1) {
+        tile.removeChild(layer);
+        layer = tile.lastElementChild;
+    }
+
+    tiles[x][y] = '';
 }

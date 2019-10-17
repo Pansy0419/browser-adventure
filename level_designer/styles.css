@@ -76,7 +76,7 @@ button.grid {
     text-align: center;
 }
 
-button>img {
+.grid>img {
     margin-right: 8px;
 }
 
@@ -118,6 +118,9 @@ button:hover{
 .tile-overlay {
     position: absolute;
     z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tile-layer {
@@ -129,4 +132,9 @@ canvas{
     position: absolute;
     margin: 8px;
     pointer-events: none;
+}
+
+.delete {
+    padding: 4px;
+    visibility: hidden;
 }
