@@ -1,9 +1,15 @@
+const tiles = new Array(9);
+for (var i = 0; i < tiles.length; i++) {
+    tiles[i] = new Array(15).fill('');
+}
+
 const picker = document.getElementsByClassName('picker')[0];
 const canvas = document.getElementsByClassName('canvas')[0];
 const doneButton = document.getElementsByClassName('done')[0];
 const clearButton = document.getElementsByClassName('clear')[0];
 const grid = document.getElementsByTagName('canvas')[0];
 const gridButton = document.getElementsByClassName('grid')[0];
+const gridIcon = document.getElementsByTagName('img')[0];
 
 window.onload = () => {
     loadTilePicker();
@@ -57,8 +63,8 @@ const loadGrid = () => {
 }
 
 const loadCanvas = () => {
-    for (var i = 0; i < BACKGROUND_TILE_ROW; i++) {
-        for (var j = 0; j < BACKGROUND_TILE_COL; j++) {
+    for (let i = 0; i < BACKGROUND_TILE_ROW; i++) {
+        for (let j = 0; j < BACKGROUND_TILE_COL; j++) {
             const div = document.createElement("div");
             div.classList.add('tile-canvas');
             
@@ -67,6 +73,8 @@ const loadCanvas = () => {
             div.ondrop = (ev) => {
                 ev.preventDefault();
                 var key = ev.dataTransfer.getData("text");
+
+                tiles[i][j] += ',' + key;
                 
                 const layer = document.createElement("div");
                 layer.classList.add("tile-layer");
@@ -109,8 +117,26 @@ const loadButtons = () => {
     gridButton.onclick = (() => {
         if (grid.style.visibility === 'hidden') {
             grid.style.visibility = 'visible';
+            gridIcon.src = '../assets/eye.png';
         } else {
             grid.style.visibility = 'hidden';
+            gridIcon.src = '../assets/eye-closed.png'
         }
     })
+
+    clearButton.onclick = clearCanvas;
+ }
+
+const clearCanvas = () => {
+    for (const child of canvas.children) {
+        let layer = child.lastElementChild;
+        while(child.childElementCount > 1) {
+            child.removeChild(layer);
+            layer = child.lastElementChild;
+        }
+    }
+
+    for (var i = 0; i < tiles.length; i++) {
+        tiles[i] = new Array(15).fill('');
+    }
 }

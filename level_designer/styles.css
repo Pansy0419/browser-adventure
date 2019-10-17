@@ -11,6 +11,13 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+p {
+    margin: 0;
 }
 
 .body-container {
@@ -42,15 +49,35 @@ body{
     margin: 0 16px 0 48px
 }
 
+.buttons {
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-gap: 0.5em;
+    height: 44px;
+}
+
 button{
-    align-content: center;
+    align-items: center;
     justify-content: center;
-    padding: .5em 1em;
+    padding: 0 16px;
     border-radius: 5px;
     font-size: 1em;
     font-family: 'Press Start 2P';
     border: 2px solid black;
     background: white;
+}
+
+button.grid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 12px;
+    justify-content: space-between;
+    text-align: center;
+}
+
+button>img {
+    margin-right: 8px;
 }
 
 button:hover{
@@ -75,9 +102,6 @@ button:hover{
 }
 
 .tile-picker, .tile-layer {
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
     background-image: url(../assets/background.png);
     background-size: 512px 1216px;
 }
