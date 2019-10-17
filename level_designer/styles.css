@@ -58,7 +58,6 @@ button:hover{
     box-shadow: inset 0 0 3px #000000;
 }
 
-
 .picker {
     flex: 1;
     height: 100%;
@@ -70,32 +69,39 @@ button:hover{
     overflow: scroll;
 }
 
-.tile-preview {
-    background-image: url(../assets/background.png);
+.tile-picker, .tile-overlay, .tile-layer {
+    height: 64px;
+    width: 64px;
+}
+
+.tile-picker, .tile-layer {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+    background-image: url(../assets/background.png);
     background-size: 512px 1216px;
-    height: 64px;
-    width: 64px;
+}
+
+.tile-picker {
     border: 2px solid black;
 }
 
+.tile-picker:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.tile-overlay {
+    position: absolute;
+    z-index: 2;
+}
+
 .tile-layer {
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-    background-size: 512px 1216px;
-    background-image: url(../assets/background.png);
-    height: 64px;
-    width: 64px;
     position: absolute;
 }
 
 canvas{
-    grid-column: 1 / span 16;
-    grid-row: 1 / span 9;
-    z-index: 100;
+    z-index: 3;
     position: absolute;
     margin: 8px;
     pointer-events: none;
