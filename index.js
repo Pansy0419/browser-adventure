@@ -1,4 +1,4 @@
-const startButton = document.getElementsByClassName('play')[0];
+const startButton = document.getElementsByTagName('button')[0];
 
 window.onload = () => {
     startButton.onclick = () => {
