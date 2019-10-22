@@ -58,15 +58,25 @@ const loadGrid = () => {
 }
 
 const loadButtons = () => {
-    gridButton.onclick = (() => {
+    gridButton.onclick = () => {
         if (grid.style.visibility === 'hidden') {
             grid.style.visibility = 'visible';
             gridIcon.src = '../assets/eye.png';
         } else {
             grid.style.visibility = 'hidden';
-            gridIcon.src = '../assets/eye-closed.png'
+            gridIcon.src = '../assets/eye-closed.png';
         }
-    })
+    }
 
     clearButton.onclick = clearCanvas;
+
+    doneButton.onclick = () => {
+        for (const i in tiles) {
+            tiles[i] = tiles[i].join(" ");
+        }
+
+        const levelText = tiles.join('\n');
+        window.localStorage.setItem("level1", levelText);
+        window.location.href = '../index.html';
+    }
 }

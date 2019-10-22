@@ -15,7 +15,7 @@ const loadCanvas = () => {
                 ev.preventDefault();
                 var key = ev.dataTransfer.getData("text");
 
-                tiles[i][j] += ',' + key;
+                tiles[i][j] += tiles[i][j].length? ',' : '' + key;
                 
                 const layer = document.createElement("div");
                 layer.classList.add("tile-layer");
