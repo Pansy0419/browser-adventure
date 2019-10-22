@@ -1,32 +1,9 @@
-body{
-    background-color: rgb(109,190, 200);
-    margin: 0;
-    font-family: 'Press Start 2P';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-}
-
-h1 {
-    margin: 0;
-}
-
 button > p {
     margin: 0;
 }
 
-.body-container {
-    flex:1;
-    display: flex;
+.outer-container {
     flex-direction: row;
-    align-items: center;
-    width: 100%;
-    height: 100%;
 }
 
 .canvas, .picker{
@@ -57,14 +34,7 @@ button > p {
 }
 
 button{
-    align-items: center;
-    justify-content: center;
     padding: 0 16px;
-    border-radius: 5px;
-    font-size: 1em;
-    font-family: 'Press Start 2P';
-    border: 2px solid black;
-    background: white;
 }
 
 button.grid {
@@ -78,11 +48,6 @@ button.grid {
 
 .grid>img {
     margin-right: 8px;
-}
-
-button:hover{
-    background-color: lightgray;
-    box-shadow: inset 0 0 3px #000000;
 }
 
 .picker {
@@ -137,17 +102,4 @@ canvas{
 .delete {
     padding: 4px;
     visibility: hidden;
-}
-
-footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-}
-
-footer p{
-    font-size: .8em;
 }
