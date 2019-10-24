@@ -4,10 +4,19 @@ for (var i = 0; i < path.length; i++) {
     path[i] = new Array(16).fill(0);
 }
 
-const drawBackground = () => {
-    const data = getFileData('levels/level1.txt');
-    const lines = data.split(/\r?\n/);
+const getLevelContent = () => {
+    const levelType = params["level"].charAt(0);
+    const levelIndex = parseInt(params["level"].substring(1));
 
+    if (levelType == 'D') { // Default levels
+        return LEVELS[levelIndex];
+    }
+}
+
+const drawBackground = () => {
+    const data = getLevelContent();
+    const lines = data.split(/\r?\n/);
+    console.log(data);
     const asset = new Image();
     canvas = adventurerWindow.document.getElementsByTagName('canvas')[0];
     const ctx = canvas.getContext('2d');
@@ -21,22 +30,24 @@ const drawBackground = () => {
             for (const j in tiles) {
                 const layers = tiles[j].split(',');
                 for (const k in layers) {
-                    const cord = BACKGROUND_TILES[layers[k]];
-                    ctx.drawImage(
-                        asset, 
-                        cord[0] * ASSET_TILE_SIZE,
-                        cord[1] * ASSET_TILE_SIZE, 
-                        ASSET_TILE_SIZE,
-                        ASSET_TILE_SIZE,
-                        j * BACKGROUND_TILE_SIZE,
-                        i * BACKGROUND_TILE_SIZE,
-                        BACKGROUND_TILE_SIZE,
-                        BACKGROUND_TILE_SIZE)
-                    ;
+                    if (layers[k].length > 0) {
+                        const cord = BACKGROUND_TILES[layers[k]];
+                        ctx.drawImage(
+                            asset, 
+                            cord[0] * ASSET_TILE_SIZE,
+                            cord[1] * ASSET_TILE_SIZE, 
+                            ASSET_TILE_SIZE,
+                            ASSET_TILE_SIZE,
+                            j * BACKGROUND_TILE_SIZE,
+                            i * BACKGROUND_TILE_SIZE,
+                            BACKGROUND_TILE_SIZE,
+                            BACKGROUND_TILE_SIZE)
+                        ;
 
-                    if (k == layers.length - 1 
-                        && /^[a-zA-Z()]$/.test(layers[k])) {
-                        path[i][j] = 1;
+                        if (k == layers.length - 1 
+                            && /^[a-zA-Z()]$/.test(layers[k])) {
+                            path[i][j] = 1;
+                        }
                     }
                 }
             }
