@@ -1,9 +1,0 @@
-0,m 2,m 1,m 0,m 2,n 0 2 1 0 1 2 0,Z a a a
-2 0 1 2 0,38 1 2 0 1 2 0 1,Z a a a a a
-0,g 1,g 2,g 0,g 1,g 2,g 0,h 1 2 0 1 2,Z a a a
-M,24 N,25 O,26 M o P 2,k 1 0 2 1 0,c 1,d 2,d,Z a
-27 28 29 O p Q 0,k,g 1,g 2,g 0,g 1,h 2 0 1,Z a
-30 31 32 N D K K C,20 Q o 1,k 1,15 0,16 2,Z,17 a
-33 34 35 M p P R p R D L 0,S 2,T 1,Z,U a
-36 V 37 O p Q P p P p 1,k 0 2 1,c 0,d 2,e
-J K K K H K K H K I 2,k 1 0 2 1 0 2
