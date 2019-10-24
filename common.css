@@ -20,6 +20,11 @@ body{
 
 h1{
     margin: 0;
+    font-size: 32px;
+}
+
+h2 {
+    margin: 0;
 }
 
 button{
