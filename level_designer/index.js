@@ -5,6 +5,7 @@ const clearButton = document.getElementsByClassName('clear')[0];
 const grid = document.getElementsByTagName('canvas')[0];
 const gridButton = document.getElementsByClassName('grid')[0];
 const gridIcon = document.getElementsByTagName('img')[0];
+const params = getParamsFromUrl();
 
 window.onload = () => {
     loadTilePicker();

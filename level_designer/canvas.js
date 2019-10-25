@@ -1,28 +1,51 @@
-const tiles = new Array(9);
-for (var i = 0; i < tiles.length; i++) {
-    tiles[i] = new Array(15).fill('');
+const tiles = [];
+
+const populateTiles = () => {
+    const levelType = params["level"].charAt(0);
+    const levelIndex = parseInt(params["level"].substring(1));
+    let levelContent;
+
+    if (levelType == 'D') { // Default levels
+        levelContent = LEVELS[levelIndex];
+    }
+
+    const lines = levelContent.split(/\r?\n/);
+    for (const i in lines) {
+        tiles.push([]);
+        const cell = lines[i].split(' ');
+        for (const j in cell) {
+            tiles[i].push(cell[j]);
+        }
+    }
+
+    console.log(tiles);
 }
 
 const loadCanvas = () => {
+    populateTiles();
+
     for (let i = 0; i < BACKGROUND_TILE_ROW; i++) {
         for (let j = 0; j < BACKGROUND_TILE_COL; j++) {
             const div = document.createElement("div");
             div.classList.add('tile-canvas');
             
+            // populate existing tiles
+            if (tiles[i][j].length > 0) {
+                const layers = tiles[i][j].split(',');
+                for (const key of layers) {
+                    div.append(createLayer(key));
+                }
+            }
+            
             loadCanvasTileOverlay(div, i, j);
 
             div.ondrop = (ev) => {
                 ev.preventDefault();
-                var key = ev.dataTransfer.getData("text");
+                const key = ev.dataTransfer.getData("text");
 
                 tiles[i][j] += tiles[i][j].length? ',' : '' + key;
                 
-                const layer = document.createElement("div");
-                layer.classList.add("tile-layer");
-                layer.style.backgroundPosition = 
-                    `-${BACKGROUND_TILES[key][0] * LEVEL_DESIGNER_TILE_SIZE}px `
-                    + `-${BACKGROUND_TILES[key][1] * LEVEL_DESIGNER_TILE_SIZE}px`;
-                
+                const layer = createLayer(key); 
                 div.appendChild(layer);
             }
 
@@ -92,4 +115,13 @@ const clearTile = (tile, x, y) => {
     }
 
     tiles[x][y] = '';
+}
+
+const createLayer = (key) => {
+    const layer = document.createElement("div");
+    layer.classList.add("tile-layer");
+    layer.style.backgroundPosition = 
+        `-${BACKGROUND_TILES[key][0] * LEVEL_DESIGNER_TILE_SIZE}px `
+        + `-${BACKGROUND_TILES[key][1] * LEVEL_DESIGNER_TILE_SIZE}px`;
+    return layer;
 }

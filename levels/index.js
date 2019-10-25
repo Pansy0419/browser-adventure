@@ -10,7 +10,7 @@ window.onload = () => {
         button.innerHTML = (Number(i) + 1).toString();
 
         button.onclick = () => {
-            if (params["edit"] === true) {
+            if (params["edit"] === "true") {
                 window.location.href = `../level_designer/index.html?level=D${i}`;
             } else {
                 window.location.href = `../index.html?level=D${i}`;
