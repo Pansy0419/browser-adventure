@@ -29,6 +29,8 @@ const loadCanvas = () => {
             const div = document.createElement("div");
             div.classList.add('tile-canvas');
             
+            loadCanvasTileOverlay(div, i, j);
+
             // populate existing tiles
             if (tiles[i][j].length > 0) {
                 const layers = tiles[i][j].split(',');
@@ -36,8 +38,6 @@ const loadCanvas = () => {
                     div.append(createLayer(key));
                 }
             }
-            
-            loadCanvasTileOverlay(div, i, j);
 
             div.ondrop = (ev) => {
                 ev.preventDefault();
@@ -108,13 +108,9 @@ const clearCanvas = () => {
 }
 
 const clearTile = (tile, x, y) => {
-    let layer = tile.lastElementChild;
-    while(tile.childElementCount > 1) {
-        tile.removeChild(layer);
-        layer = tile.lastElementChild;
-    }
-
-    tiles[x][y] = '';
+    tile.removeChild(tile.lastElementChild);
+    const idx = tiles[x][y].lastIndexOf(',');
+    tiles[x][y] = tiles[x][y].substring(0, idx);
 }
 
 const createLayer = (key) => {
