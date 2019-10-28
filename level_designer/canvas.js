@@ -17,8 +17,6 @@ const populateTiles = () => {
             tiles[i].push(cell[j]);
         }
     }
-
-    console.log(tiles);
 }
 
 const loadCanvas = () => {

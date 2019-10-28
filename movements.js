@@ -2,18 +2,25 @@ const animIds = new Map();
 
 const move = (sprite, win, dir) => {
     if (sprite.classList.length >= 2) {
-        if (dir === "LEFT") {
-            sprite.classList.replace('runRight', 'runLeft'); 
-        } else if (dir === "RIGHT") {
-            sprite.classList.replace('runLeft', 'runRight'); 
+        if (dir === "LEFT" 
+            && sprite.classList.item(1) !== "runLeft") {
+            sprite.classList.remove(1);
+            sprite.classList.add('runLeft');
+        } else if (dir === "RIGHT"
+            && sprite.classList.item(1) !== "runRight") {
+            sprite.classList.remove(1);
+            sprite.classList.add('runRight');
         }
-    } else if (sprite.classList.length < 2) {
+    } else {
         if (dir === "LEFT") {
             sprite.classList.add('runLeft'); 
+        } else if (dir === "DOWN") {
+            sprite.classList.add('runForward');
         } else {
             sprite.classList.add('runRight');
         }
     }
+
     if (!animIds.has(dir)) {
         animIds.set(dir, setInterval(frameFunc(win, dir), 10));
     }
