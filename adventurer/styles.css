@@ -41,6 +41,12 @@ canvas {
     background-image: url('../assets/adventurer_run_forward.png');
 }
 
+.runBackward{
+    -webkit-animation: animRun 800ms steps(8) infinite;
+    animation: animRun 800ms steps(8) infinite;
+    background-image: url('../assets/adventurer_run_backward.png');
+}
+
 @keyframes animRun {
     0% {
         background-position: 0px 0px;

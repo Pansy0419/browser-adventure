@@ -1,23 +1,18 @@
 const animIds = new Map();
 
 const move = (sprite, win, dir) => {
-    if (sprite.classList.length >= 2) {
-        if (dir === "LEFT" 
-            && sprite.classList.item(1) !== "runLeft") {
-            sprite.classList.remove(1);
-            sprite.classList.add('runLeft');
-        } else if (dir === "RIGHT"
-            && sprite.classList.item(1) !== "runRight") {
-            sprite.classList.remove(1);
-            sprite.classList.add('runRight');
-        }
+    if (!animIds.has("LEFT") 
+        && !animIds.has("RIGHT")) {
+        if (sprite.classList.length > 1)
+            sprite.classList.remove(sprite.classList.item(1));
+        sprite.classList.add(getClassFromDir(dir));
     } else {
-        if (dir === "LEFT") {
-            sprite.classList.add('runLeft'); 
-        } else if (dir === "DOWN") {
-            sprite.classList.add('runForward');
-        } else {
-            sprite.classList.add('runRight');
+        const newClass = getClassFromDir(dir);
+        if (newClass !== sprite.classList.item(1)) {
+            sprite.classList.replace(
+                sprite.classList.item(1), 
+                newClass
+            );
         }
     }
 
@@ -26,14 +21,36 @@ const move = (sprite, win, dir) => {
     }
 }
 
+const getClassFromDir = (dir) => {
+    switch (dir) {
+        case 'LEFT':
+            return 'runLeft';
+        case 'RIGHT':
+            return 'runRight';
+        case 'UP':
+            return 'runBackward';
+        case 'DOWN':
+            return 'runForward';
+    }
+}
+
 const finishMove = (sprite, dir) => {
     if (animIds.has(dir)) {
         clearInterval(animIds.get(dir));
         animIds.delete(dir);
     }
+    
+    sprite.classList.remove(getClassFromDir(dir));
 
-    if (animIds.size === 0) {
-        sprite.classList.remove(sprite.classList.item(1));
+    if ((dir == "LEFT" || dir == "RIGHT") 
+        && animIds.size > 0) {
+        sprite.classList.add(
+            getClassFromDir(
+                animIds.has("UP") ? 
+                    "UP"
+                    : "DOWN"
+            )
+        );
     }
 }
 
