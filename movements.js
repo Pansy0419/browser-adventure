@@ -1,130 +1,167 @@
-const animIds = new Map();
+const dirs = {};
+const ids = {};
 
-const move = (sprite, win, dir) => {
-    if (!animIds.has("LEFT") 
-        && !animIds.has("RIGHT")) {
-        if (sprite.classList.length > 1)
-            sprite.classList.remove(sprite.classList.item(1));
-        sprite.classList.add(getClassFromDir(dir));
-    } else {
-        const newClass = getClassFromDir(dir);
-        if (newClass !== sprite.classList.item(1)) {
-            sprite.classList.replace(
-                sprite.classList.item(1), 
-                newClass
-            );
-        }
+/* Public functions */
+
+/**
+ * Set up sprite movement
+ * @param {*} sprite character sprite
+ * @param {*} win character window
+ */
+const loadMovement = (sprite, win) => {
+  dirs[sprite] = new Set();
+  ids[sprite] = setInterval(function() {
+    move(win, sprite);
+  }, 10);
+};
+
+/**
+ * Unset sprite movement before exit
+ * @param {*} sprite character sprite
+ */
+const unloadMovement = sprite => {
+  clearInterval(ids[sprite]);
+  delete ids[sprite];
+  delete dirs[sprite];
+};
+
+/**
+ * Move the sprite in dir direction
+ * @param {*} sprite character sprite
+ * @param {*} dir direction
+ */
+const onMove = (sprite, dir) => {
+  dirs[sprite].add(dir);
+};
+
+/**
+ * Cancel sprite move in dir direction
+ * @param {*} sprite character sprite
+ * @param {*} dir direction
+ */
+const onFinishMove = (sprite, dir) => {
+  dirs[sprite].delete(dir);
+};
+
+/* Helper functions */
+
+// process moves in current time interval
+const move = (win, sprite) => {
+  const curDirs = dirs[sprite];
+  // special cases
+  if (
+    curDirs.size === 0 ||
+    (curDirs.has("RIGHT") && curDirs.has("LEFT")) ||
+    (curDirs.has("UP") && curDirs.has("DOWN"))
+  ) {
+    clearAnimation(sprite);
+    return;
+  }
+
+  // handle movement
+  for (const dir of curDirs) {
+    moveInDir(win, dir);
+  }
+
+  // handle animation
+  if (curDirs.has("RIGHT")) {
+    animateInDir(sprite, "RIGHT");
+  } else if (curDirs.has("LEFT")) {
+    animateInDir(sprite, "LEFT");
+  } else if (curDirs.has("UP")) {
+    animateInDir(sprite, "UP");
+  } else if (curDirs.has("DOWN")) {
+    animateInDir(sprite, "DOWN");
+  }
+};
+
+const animateInDir = (sprite, dir) => {
+  for (const d of ["UP", "DOWN", "LEFT", "RIGHT"]) {
+    if (d !== dir) {
+      sprite.classList.remove(getClassFromDir(d));
     }
+  }
+  sprite.classList.add(getClassFromDir(dir));
+};
 
-    if (!animIds.has(dir)) {
-        animIds.set(dir, setInterval(frameFunc(win, dir), 10));
-    }
-}
+const moveInDir = (win, dir) => {
+  const centerX = win.screenX + win.outerWidth / 2;
+  const centerY = win.screenY + win.outerHeight / 2;
+  const top = parseInt(getComputedStyle(canvas).top);
+  const left = parseInt(getComputedStyle(canvas).left);
 
-const getClassFromDir = (dir) => {
-    switch (dir) {
-        case 'LEFT':
-            return 'runLeft';
-        case 'RIGHT':
-            return 'runRight';
-        case 'UP':
-            return 'runBackward';
-        case 'DOWN':
-            return 'runForward';
-    }
-}
+  switch (dir) {
+    case "UP":
+      if (canMove(centerX, centerY - RUN_SPEED)) {
+        canvas.style.top = top + RUN_SPEED + "px";
+        win.moveBy(0, -RUN_SPEED);
+      }
+      break;
+    case "LEFT":
+      if (canMove(centerX - RUN_SPEED, centerY)) {
+        canvas.style.left = left + RUN_SPEED + "px";
+        win.moveBy(-RUN_SPEED, 0);
+      }
+      break;
+    case "DOWN":
+      if (canMove(centerX, centerY + RUN_SPEED)) {
+        canvas.style.top = top - RUN_SPEED + "px";
+        win.moveBy(0, RUN_SPEED);
+      }
+      break;
+    case "RIGHT":
+      if (canMove(centerX + RUN_SPEED, centerY)) {
+        canvas.style.left = left - RUN_SPEED + "px";
+        win.moveBy(RUN_SPEED, 0);
+      }
+      break;
+    default:
+      break;
+  }
+};
 
-const finishMove = (sprite, dir) => {
-    if (animIds.has(dir)) {
-        clearInterval(animIds.get(dir));
-        animIds.delete(dir);
-    }
-    
-    sprite.classList.remove(getClassFromDir(dir));
+// get css class from direction
+const getClassFromDir = dir => {
+  switch (dir) {
+    case "LEFT":
+      return "runLeft";
+    case "RIGHT":
+      return "runRight";
+    case "UP":
+      return "runBackward";
+    case "DOWN":
+      return "runForward";
+  }
+};
 
-    if ((dir == "LEFT" || dir == "RIGHT") 
-        && animIds.size > 0) {
-        sprite.classList.add(
-            getClassFromDir(
-                animIds.has("UP") ? 
-                    "UP"
-                    : "DOWN"
-            )
-        );
-    }
-}
-
-const frameFunc = (win, dir) => {
-    return () => {
-        const centerX  = win.screenX + win.outerWidth / 2;
-        const centerY = win.screenY + win.outerHeight / 2;
-
-        switch(dir) {
-            case "UP":
-                if (canMove(centerX, centerY-RUN_SPEED)) {
-                    win.moveBy(0, -RUN_SPEED);
-                    const top = parseInt(getComputedStyle(canvas).top);
-                    canvas.style.top = (top + RUN_SPEED) + "px";
-                } else {
-                    clearInterval(animIds.get(dir));
-                    animIds.delete(dir);
-                }
-                break;
-            case "LEFT":
-                if (canMove(centerX - RUN_SPEED, centerY)) {
-                    win.moveBy(-RUN_SPEED, 0);
-                    const left = parseInt(getComputedStyle(canvas).left);
-                    canvas.style.left = (left + RUN_SPEED) + "px";
-                } else {
-                    clearInterval(animIds.get(dir));
-                    animIds.delete(dir);
-                }
-                break;
-            case "DOWN":
-                if (canMove(centerX, centerY + RUN_SPEED)) {
-                    win.moveBy(0, RUN_SPEED);
-                    const top = parseInt(getComputedStyle(canvas).top);
-                    canvas.style.top = (top - RUN_SPEED) + "px";
-                } else {
-                    clearInterval(animIds.get(dir));
-                    animIds.delete(dir);
-                }
-                break;
-            case "RIGHT":
-                if (canMove(centerX + RUN_SPEED, centerY)) {
-                    win.moveBy(RUN_SPEED, 0);
-                    const left = parseInt(getComputedStyle(canvas).left);
-                    canvas.style.left = (left - RUN_SPEED) + "px";
-                } else {
-                    clearInterval(animIds.get(dir));
-                    animIds.delete(dir);
-                }
-                break;
-            default:
-                break;
-        }
-    }
-    const centerX  = win.screenX + win.outerWidth / 2;
-    const centerY = win.screenY + win.outerHeight / 2;
-    console.log('position', centerX, centerY);
-}
+const clearAnimation = sprite => {
+  sprite.classList.remove(
+    getClassFromDir("UP"),
+    getClassFromDir("DOWN"),
+    getClassFromDir("LEFT"),
+    getClassFromDir("RIGHT")
+  );
+};
 
 // (x,y) is the center position of the character window/ character
 // sprite after the intended move
 const canMove = (x, y) => {
-    if (x - SPRITE_WINDOW_WIDTH / 2 < 0 
-        || x + SPRITE_WINDOW_WIDTH / 2 > window.outerWidth)
-        return false;
+  if (
+    x - SPRITE_WINDOW_WIDTH / 2 < 0 ||
+    x + SPRITE_WINDOW_WIDTH / 2 > window.outerWidth
+  )
+    return false;
 
-    // magic, don't touch
-    if (y < 148 || y + 102 > window.outerHeight)
-        return false;
-    
-    const getXIndex = (x) => Math.floor(x / BACKGROUND_TILE_SIZE);
-    const getYIndex = (y) => Math.floor(y / BACKGROUND_TILE_SIZE);
-    
-    return path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x - SPRITE_WIDTH / 2)]
-    && path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x + SPRITE_WIDTH / 2)]
-    && path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x - SPRITE_WIDTH / 2)]
-    && path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x + SPRITE_WIDTH / 2)];
-}
+  // magic, don't touch
+  if (y < 148 || y + 102 > window.outerHeight) return false;
+
+  const getXIndex = x => Math.floor(x / BACKGROUND_TILE_SIZE);
+  const getYIndex = y => Math.floor(y / BACKGROUND_TILE_SIZE);
+
+  return (
+    path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x - SPRITE_WIDTH / 2)] &&
+    path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x + SPRITE_WIDTH / 2)] &&
+    path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x - SPRITE_WIDTH / 2)] &&
+    path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x + SPRITE_WIDTH / 2)]
+  );
+};
