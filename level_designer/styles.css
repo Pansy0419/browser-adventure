@@ -1,105 +1,109 @@
 button > p {
-    margin: 0;
+  margin: 0;
 }
 
 .outer-container {
-    flex-direction: row;
+  flex-direction: row;
 }
 
-.canvas, .picker{
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 4px;
-    padding: 8px;
+.canvas,
+.picker {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 8px;
 }
 
 .canvas {
-    width: 960px;
-    height: 576px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 64px);
-    grid-template-rows: repeat(auto-fill, 64px);
-    margin: 12px 0;
+  width: 960px;
+  height: 576px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 64px);
+  grid-template-rows: repeat(auto-fill, 64px);
+  margin: 12px 0;
 }
 
 .canvas-container {
-    margin: 0 16px 0 48px
+  margin: 0 16px 0 48px;
 }
 
 .buttons {
-    display: inline-grid;
-    grid-auto-flow: column;
-    grid-gap: 0.5em;
-    height: 44px;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-gap: 0.5em;
+  height: 44px;
 }
 
-button{
-    padding: 0 16px;
+button {
+  padding: 0 16px;
 }
 
 button.grid {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0 12px;
-    justify-content: space-between;
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 12px;
+  justify-content: space-between;
+  text-align: center;
 }
 
-.grid>img {
-    margin-right: 8px;
+.grid > img {
+  margin-right: 8px;
 }
 
 .picker {
-    flex: 1;
-    height: 90%;
-    margin: 0 48px 0 16px;
-    display: grid;
-    grid-gap: 0.5em;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(auto-fill, 64px);
-    overflow: scroll;
+  flex: 1;
+  height: 90%;
+  margin: 0 48px 0 16px;
+  display: grid;
+  grid-gap: 0.5em;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(auto-fill, 64px);
+  overflow: scroll;
 }
 
-.tile-picker, .tile-overlay, .tile-layer {
-    height: 64px;
-    width: 64px;
+.tile-picker,
+.tile-overlay,
+.tile-layer {
+  height: 64px;
+  width: 64px;
 }
 
-.tile-picker, .tile-layer {
-    background-image: url(../assets/background.png);
-    background-size: 512px 1216px;
+.tile-picker,
+.tile-layer {
+  background-image: url(../assets/background.png);
+  background-size: 512px 1216px;
 }
 
 .tile-picker {
-    border: 2px solid black;
+  border: 2px solid black;
 }
 
 .tile-picker:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+  transform: translate(-1px, -1px);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
 }
 
 .tile-overlay {
-    position: absolute;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tile-layer {
-    position: absolute;
+  position: absolute;
 }
 
-canvas{
-    z-index: 3;
-    position: absolute;
-    pointer-events: none;
-    margin: 20px 8px;
+canvas {
+  z-index: 3;
+  position: absolute;
+  pointer-events: none;
+  margin: 20px 8px;
 }
 
 .delete {
-    padding: 4px;
-    visibility: hidden;
+  padding: 4px;
+  visibility: hidden;
 }

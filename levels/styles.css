@@ -1,25 +1,25 @@
 .content-container {
-    padding: 64px 84px;
-    width: 100%;
-    align-self: flex-start;
-    text-align: center;
+  padding: 64px 84px;
+  width: 100%;
+  align-self: flex-start;
+  text-align: center;
 }
 
 h2 {
-    text-align: start;
-    margin: 32px 0 24px 0;
+  text-align: start;
+  margin: 32px 0 24px 0;
 }
 
 .levels {
-    display: grid;
-    grid-gap: 1em;
-    align-items: center;
-    grid-template-columns: repeat(20, auto);
-    margin: 12px 0;
+  display: grid;
+  grid-gap: 1em;
+  align-items: center;
+  grid-template-columns: repeat(20, auto);
+  margin: 12px 0;
 }
 
-.levels>button {
-    height: 48px;
-    width: 48px;
-    margin: 0 auto;
+.levels > button {
+  height: 48px;
+  width: 48px;
+  margin: 0 auto;
 }

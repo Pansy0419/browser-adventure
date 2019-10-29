@@ -1,69 +1,69 @@
-.sprite{
-    background-image: url('../assets/adventurer_stand.png');
-    animation-play-state: running;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-    background-size: cover;
-    width: 110px;
-    height: 160px;
-    -webkit-animation: animStand 3s steps(13) infinite;
-    animation: animStand 3s steps(13) infinite;
-    margin: auto;
+.sprite {
+  background-image: url("../assets/adventurer_stand.png");
+  animation-play-state: running;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  background-size: cover;
+  width: 110px;
+  height: 160px;
+  -webkit-animation: animStand 3s steps(13) infinite;
+  animation: animStand 3s steps(13) infinite;
+  margin: auto;
 }
 
 body {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 canvas {
-    position: absolute;
-    left: 0px;
-    top: -664px;
-    z-index: -1;
+  position: absolute;
+  left: 0px;
+  top: -664px;
+  z-index: -1;
 }
 
-.runRight{
-    -webkit-animation: animRun 800ms steps(8) infinite;
-    animation: animRun 800ms steps(8) infinite;
-    background-image: url('../assets/adventurer_run_right.png');
+.runRight {
+  -webkit-animation: animRun 800ms steps(8) infinite;
+  animation: animRun 800ms steps(8) infinite;
+  background-image: url("../assets/adventurer_run_right.png");
 }
 
-.runLeft{
-    -webkit-animation: animRun 800ms steps(8) infinite;
-    animation: animRun 800ms steps(8) infinite;
-    background-image: url('../assets/adventurer_run_left.png');
+.runLeft {
+  -webkit-animation: animRun 800ms steps(8) infinite;
+  animation: animRun 800ms steps(8) infinite;
+  background-image: url("../assets/adventurer_run_left.png");
 }
 
-.runForward{
-    -webkit-animation: animRun 800ms steps(8) infinite;
-    animation: animRun 800ms steps(8) infinite;
-    background-image: url('../assets/adventurer_run_forward.png');
+.runForward {
+  -webkit-animation: animRun 800ms steps(8) infinite;
+  animation: animRun 800ms steps(8) infinite;
+  background-image: url("../assets/adventurer_run_forward.png");
 }
 
-.runBackward{
-    -webkit-animation: animRun 800ms steps(8) infinite;
-    animation: animRun 800ms steps(8) infinite;
-    background-image: url('../assets/adventurer_run_backward.png');
+.runBackward {
+  -webkit-animation: animRun 800ms steps(8) infinite;
+  animation: animRun 800ms steps(8) infinite;
+  background-image: url("../assets/adventurer_run_backward.png");
 }
 
 @keyframes animRun {
-    0% {
-        background-position: 0px 0px;
-    }
-    100% {
-        background-position: 880px 0px;
-    }
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 880px 0px;
+  }
 }
 
 @keyframes animStand {
-    0% {
-        background-position: 0px 0px;
-    }
-    50% {
-        background-position: 0px 0px;
-    }
-    100% {
-        background-position: 1430px 0px;
-    }
+  0% {
+    background-position: 0px 0px;
+  }
+  50% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 1430px 0px;
+  }
 }
