@@ -2,20 +2,32 @@ let adventurer;
 let adventurerWindow;
 let princessWindow;
 
+/* Public functions */
+
+/**
+ * Load all character windows
+ */
+const loadCharacters = () => {
+  loadAdventurer();
+  loadPrincess();
+};
+
+/* Helper functions */
+
 const loadAdventurer = () => {
   adventurerWindow = window.open(
     "./adventurer/index.html",
     "adventurerWindow",
     `
-            menubar=no,
-            location=no,
-            status=1,
-            scrollbars=no,
-            width=226,
-            height=200,
-            screenX=0,
-            screenY=${window.outerHeight}
-        `
+      menubar=no,
+      location=no,
+      status=1,
+      scrollbars=no,
+      width=226,
+      height=200,
+      screenX=0,
+      screenY=${window.outerHeight}
+    `
   );
 
   adventurerWindow.focus();
@@ -32,15 +44,15 @@ const loadPrincess = () => {
     "./princess/index.html",
     "princessWindow",
     `
-            menubar=no,
-            location=no,
-            status=1,
-            scrollbars=no,
-            width=226,
-            height=200,
-            screenX=${window.outerWidth},
-            screenY=0
-        `
+      menubar=no,
+      location=no,
+      status=1,
+      scrollbars=no,
+      width=226,
+      height=200,
+      screenX=${window.outerWidth},
+      screenY=0
+    `
   );
 };
 

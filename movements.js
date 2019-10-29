@@ -1,8 +1,6 @@
 const dirs = {};
 const ids = {};
 
-/* Public functions */
-
 /**
  * Set up sprite movement
  * @param {*} sprite character sprite
@@ -87,32 +85,30 @@ const animateInDir = (sprite, dir) => {
 const moveInDir = (win, dir) => {
   const centerX = win.screenX + win.outerWidth / 2;
   const centerY = win.screenY + win.outerHeight / 2;
-  const top = parseInt(getComputedStyle(canvas).top);
-  const left = parseInt(getComputedStyle(canvas).left);
 
   switch (dir) {
     case "UP":
       if (canMove(centerX, centerY - RUN_SPEED)) {
-        canvas.style.top = top + RUN_SPEED + "px";
         win.moveBy(0, -RUN_SPEED);
+        canvas.style.top = -(win.screenY + 14) + "px";
       }
       break;
     case "LEFT":
       if (canMove(centerX - RUN_SPEED, centerY)) {
-        canvas.style.left = left + RUN_SPEED + "px";
         win.moveBy(-RUN_SPEED, 0);
+        canvas.style.left = -win.screenX + "px";
       }
       break;
     case "DOWN":
       if (canMove(centerX, centerY + RUN_SPEED)) {
-        canvas.style.top = top - RUN_SPEED + "px";
         win.moveBy(0, RUN_SPEED);
+        canvas.style.top = -(win.screenY + 14) + "px";
       }
       break;
     case "RIGHT":
       if (canMove(centerX + RUN_SPEED, centerY)) {
-        canvas.style.left = left - RUN_SPEED + "px";
         win.moveBy(RUN_SPEED, 0);
+        canvas.style.left = -win.screenX + "px";
       }
       break;
     default:
