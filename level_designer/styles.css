@@ -72,7 +72,7 @@ button.grid {
 .tile-picker,
 .tile-layer {
   background-image: url(../assets/background.png);
-  background-size: 512px 1216px;
+  background-size: 576px 1152px;
 }
 
 .tile-picker {
