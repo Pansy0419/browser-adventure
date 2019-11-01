@@ -81,7 +81,7 @@ p {
 }
 
 .adventurer {
-  width: 95px;
+  width: 110px;
   height: 160px;
   background-image: url("assets/adventurer_stand_title.png");
   -webkit-animation: animAdventurer 2s steps(8) infinite;
@@ -96,7 +96,7 @@ p {
     background-position: 0px 0px;
   }
   100% {
-    background-position: 760px 0px;
+    background-position: 880px 0px;
   }
 }
 
