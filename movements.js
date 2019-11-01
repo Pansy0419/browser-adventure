@@ -41,6 +41,45 @@ const onFinishMove = (sprite, dir) => {
   dirs[sprite].delete(dir);
 };
 
+/**
+ * Move sprite window in dir direction
+ * @param {*} win sprite window
+ * @param {*} dir direction
+ */
+const moveInDir = (win, dir) => {
+  const centerX = win.screenX + win.outerWidth / 2;
+  const centerY = win.screenY + win.outerHeight / 2;
+
+  switch (dir) {
+    case "UP":
+      if (canMove(centerX, centerY - RUN_SPEED)) {
+        win.moveBy(0, -RUN_SPEED);
+        canvas.style.top = -(win.screenY + 14) + "px";
+      }
+      break;
+    case "LEFT":
+      if (canMove(centerX - RUN_SPEED, centerY)) {
+        win.moveBy(-RUN_SPEED, 0);
+        canvas.style.left = -win.screenX + "px";
+      }
+      break;
+    case "DOWN":
+      if (canMove(centerX, centerY + RUN_SPEED)) {
+        win.moveBy(0, RUN_SPEED);
+        canvas.style.top = -(win.screenY + 14) + "px";
+      }
+      break;
+    case "RIGHT":
+      if (canMove(centerX + RUN_SPEED, centerY)) {
+        win.moveBy(RUN_SPEED, 0);
+        canvas.style.left = -win.screenX + "px";
+      }
+      break;
+    default:
+      break;
+  }
+};
+
 /* Helper functions */
 
 // process moves in current time interval
@@ -82,40 +121,6 @@ const animateInDir = (sprite, dir) => {
   sprite.classList.add(getClassFromDir(dir));
 };
 
-const moveInDir = (win, dir) => {
-  const centerX = win.screenX + win.outerWidth / 2;
-  const centerY = win.screenY + win.outerHeight / 2;
-
-  switch (dir) {
-    case "UP":
-      if (canMove(centerX, centerY - RUN_SPEED)) {
-        win.moveBy(0, -RUN_SPEED);
-        canvas.style.top = -(win.screenY + 14) + "px";
-      }
-      break;
-    case "LEFT":
-      if (canMove(centerX - RUN_SPEED, centerY)) {
-        win.moveBy(-RUN_SPEED, 0);
-        canvas.style.left = -win.screenX + "px";
-      }
-      break;
-    case "DOWN":
-      if (canMove(centerX, centerY + RUN_SPEED)) {
-        win.moveBy(0, RUN_SPEED);
-        canvas.style.top = -(win.screenY + 14) + "px";
-      }
-      break;
-    case "RIGHT":
-      if (canMove(centerX + RUN_SPEED, centerY)) {
-        win.moveBy(RUN_SPEED, 0);
-        canvas.style.left = -win.screenX + "px";
-      }
-      break;
-    default:
-      break;
-  }
-};
-
 // get css class from direction
 const getClassFromDir = dir => {
   switch (dir) {
@@ -155,8 +160,8 @@ const canMove = (x, y) => {
   const getYIndex = y => Math.floor(y / BACKGROUND_TILE_SIZE);
 
   return (
-    path[getYIndex(y + SPRITE_HEIGHT * 0.6)][getXIndex(x - SPRITE_WIDTH / 2)] &&
-    path[getYIndex(y + SPRITE_HEIGHT * 0.6)][getXIndex(x + SPRITE_WIDTH / 2)] &&
+    path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x - SPRITE_WIDTH / 2)] &&
+    path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x + SPRITE_WIDTH / 2)] &&
     path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x - SPRITE_WIDTH / 2)] &&
     path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x + SPRITE_WIDTH / 2)]
   );

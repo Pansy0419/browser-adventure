@@ -10,7 +10,7 @@ for (var i = 0; i < path.length; i++) {
  * Draw level background onto canvas
  */
 const drawBackground = () => {
-  canvas = adventurerWindow.document.getElementsByTagName("canvas")[0];
+  canvas = adventurerWindow.document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   ctx.canvas.width = 1440;
   ctx.canvas.height = 864;
@@ -47,6 +47,13 @@ const drawBackground = () => {
         }
       }
     }
+
+    adventurerWindow.document
+      .getElementsByTagName("body")[0]
+      .appendChild(canvas);
+    princessWindow.document
+      .getElementsByTagName("body")[0]
+      .appendChild(cloneCanvas(canvas));
   };
   asset.src = "assets/background.png";
 };

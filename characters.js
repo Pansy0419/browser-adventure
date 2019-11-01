@@ -33,7 +33,9 @@ const loadAdventurer = () => {
   adventurerWindow.focus();
 
   adventurerWindow.addEventListener("load", event => {
-    adventurer = adventurerWindow.document.getElementsByClassName("sprite")[0];
+    adventurer = adventurerWindow.document.getElementsByClassName(
+      "adventurer"
+    )[0];
     drawBackground();
     setUpAdventurerMovements();
   });
