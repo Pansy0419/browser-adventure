@@ -155,8 +155,8 @@ const canMove = (x, y) => {
   const getYIndex = y => Math.floor(y / BACKGROUND_TILE_SIZE);
 
   return (
-    path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x - SPRITE_WIDTH / 2)] &&
-    path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x + SPRITE_WIDTH / 2)] &&
+    path[getYIndex(y + SPRITE_HEIGHT * 0.6)][getXIndex(x - SPRITE_WIDTH / 2)] &&
+    path[getYIndex(y + SPRITE_HEIGHT * 0.6)][getXIndex(x + SPRITE_WIDTH / 2)] &&
     path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x - SPRITE_WIDTH / 2)] &&
     path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x + SPRITE_WIDTH / 2)]
   );

@@ -1,25 +1,16 @@
-.sprite{
-    background-image: url('../assets/princess_stand.png');
-    animation-play-state: running;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-    background-size: cover;
-    width: 80px;
-    height: 160px;
-    -webkit-animation: animPricess 1.5s steps(4) infinite;
-    animation: animPricess 1.5s steps(4) infinite;
-    margin: auto;
+.princess {
+  margin: auto;
+  transform: scaleX(-1);
 }
 
 @keyframes animPricess {
-    0% {
-        background-position: 0px 0px;
-    }
-    50% {
-        background-position: 0px 0px;
-    }
-    100% {
-        background-position: 320px 0px;
-    }
+  0% {
+    background-position: 0px 0px;
+  }
+  50% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 320px 0px;
+  }
 }

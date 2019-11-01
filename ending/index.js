@@ -1,7 +1,7 @@
 const adventurer = document.getElementsByClassName("adventurer")[0];
 const princess = document.getElementsByClassName("princess")[0];
 const adventurerContainer = document.getElementsByClassName(
-  "character-container"
+  "adventurer-container"
 )[0];
 
 window.onload = () => {

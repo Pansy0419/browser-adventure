@@ -74,52 +74,6 @@ p {
   grid-row: 2;
 }
 
-.adventurer,
-.princess {
-  animation-play-state: running;
-  background-size: cover;
-}
-
-.adventurer {
-  width: 110px;
-  height: 160px;
-  background-image: url("assets/adventurer_stand_title.png");
-  -webkit-animation: animAdventurer 2s steps(8) infinite;
-  animation: animAdventurer 2s steps(8) infinite;
-}
-
-@keyframes animAdventurer {
-  0% {
-    background-position: 0px 0px;
-  }
-  30% {
-    background-position: 0px 0px;
-  }
-  100% {
-    background-position: 880px 0px;
-  }
-}
-
-.princess {
-  width: 80px;
-  height: 160px;
-  background-image: url("assets/princess_stand.png");
-  -webkit-animation: animPricess 1.5s steps(4) infinite;
-  animation: animPricess 1.5s steps(4) infinite;
-}
-
-@keyframes animPricess {
-  0% {
-    background-position: 0px 0px;
-  }
-  50% {
-    background-position: 0px 0px;
-  }
-  100% {
-    background-position: 320px 0px;
-  }
-}
-
 .buttons {
   display: flex;
   flex-direction: column;
