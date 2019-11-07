@@ -54,6 +54,9 @@ const drawBackground = () => {
     princessWindow.document
       .getElementsByTagName("body")[0]
       .appendChild(cloneCanvas(canvas));
+    endingWindow.document
+      .getElementsByTagName("body")[0]
+      .appendChild(cloneCanvas(canvas));
   };
   asset.src = "assets/background.png";
 };

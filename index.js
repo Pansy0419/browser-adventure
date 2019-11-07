@@ -1,9 +1,10 @@
 const startButton = document.getElementsByTagName("button")[0];
 const designerButton = document.getElementsByTagName("button")[1];
 const params = getParamsFromUrl();
+let endingWindow;
 
 window.onload = () => {
-  const endingWindow = window.open(
+  endingWindow = window.open(
     "./ending/index.html",
     "endingWindow",
     `
