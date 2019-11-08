@@ -153,3 +153,41 @@ const LEVELS = [
     "36 V 37 O p Q P p P p 1,k 0 2 1,c 0,d 2,e\n" +
     "J K K K H K K H K I 2,k 1 0 2 1 0 2"
 ];
+
+const ACTIONS = [
+  [
+    "Oh, hi there",
+    "It's not common to see civilians up here",
+    "It's quite a long walk from town, isn't it?",
+    "(M)(A)50",
+    "(E) 0",
+    "Oh... That's nice of you...",
+    "(M)(A)50",
+    "(E) 1",
+    "...",
+    "Do I know you?",
+    "(M)(A)50",
+    "...",
+    "Well, whoever you are, you know I can't just marry whoever I want, right?",
+    "And plus I don't even know you...",
+    "And plus you are wearing a stupid scarf...",
+    "...",
+    "Well, I afraid I would have to leave now",
+    "So...It's nice talking to you",
+    "Bye",
+    "(M)(P)100",
+    "(M)(P)-50",
+    "You are still here...",
+    "It's gonna get dark soon, you'd better go home",
+    "...",
+    "Fine, do you really want to marry me?",
+    "I don't want to marry a guy that doesn't love me",
+    "So I want you prove your love for me",
+    "If you can come all the way here for the next... say 99 days",
+    "Then... I would talk to my dad about it",
+    "Do you think you can do that?",
+    "All right then, now go home. I see you tomorrow",
+    "(M)(A)-100",
+    "...(sigh)",
+  ]
+]
