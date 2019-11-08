@@ -77,6 +77,7 @@ const loadButtons = () => {
     }
 
     const levelText = tiles.join("\n");
+    console.log(levelText);
     window.localStorage.setItem("level1", levelText);
     window.location.href = "../index.html";
   };

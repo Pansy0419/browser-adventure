@@ -1,4 +1,7 @@
-const tiles = [];
+const tiles = new Array(9);
+for (var i = 0; i < tiles.length; i++) {
+  tiles[i] = new Array(16).fill("");
+}
 
 const populateTiles = () => {
   const levelType = params["level"].charAt(0);
@@ -12,16 +15,15 @@ const populateTiles = () => {
 
   const lines = levelContent.split(/\r?\n/);
   for (const i in lines) {
-    tiles.push([]);
     const cell = lines[i].split(" ");
     for (const j in cell) {
-      tiles[i].push(cell[j]);
+      tiles[i][j] = cell[j];
     }
   }
 };
 
 const loadCanvas = () => {
-  populateTiles();
+  if (params["level"]) populateTiles();
 
   for (let i = 0; i < BACKGROUND_TILE_ROW; i++) {
     for (let j = 0; j < BACKGROUND_TILE_COL; j++) {
@@ -34,7 +36,7 @@ const loadCanvas = () => {
       if (tiles[i][j].length > 0) {
         const layers = tiles[i][j].split(",");
         for (const key of layers) {
-          div.append(createLayer(key));
+          if (BACKGROUND_TILES[key]) div.append(createLayer(key));
         }
       }
 
@@ -42,7 +44,7 @@ const loadCanvas = () => {
         ev.preventDefault();
         const key = ev.dataTransfer.getData("text");
 
-        tiles[i][j] += tiles[i][j].length ? "," : "" + key;
+        tiles[i][j] += (tiles[i][j].length > 0 ? "," : "") + key;
 
         const layer = createLayer(key);
         div.appendChild(layer);
@@ -65,6 +67,9 @@ const loadCanvasTileOverlay = (tile, x, y) => {
     button.appendChild(trashIcon);
     button.onclick = () => {
       clearTile(tile, x, y);
+      if (tile.childElementCount <= 1) {
+        button.style.visibility = "hidden";
+      }
     };
     overlay.appendChild(button);
 
