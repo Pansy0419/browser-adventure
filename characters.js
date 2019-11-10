@@ -36,8 +36,12 @@ const loadAdventurer = () => {
     adventurer = adventurerWindow.document.getElementsByClassName(
       "adventurer"
     )[0];
-    drawBackground();
+    drawBackground(adventurerWindow);
     setUpAdventurerMovements();
+  });
+
+  princessWindow.addEventListener("load", event => {
+    drawBackground(princessWindow);
   });
 };
 
@@ -65,8 +69,7 @@ const setUpAdventurerMovements = () => {
     if (adventurer != undefined && event.key in DIRECTION_KEYS) {
       onMove(adventurer, DIRECTION_KEYS[event.key]);
       if (checkCollision(princessWindow, adventurerWindow)) {
-        // TODO: display ending
-        console.log("collision");
+        endGame();
       }
     }
   });

@@ -9,7 +9,7 @@ for (var i = 0; i < path.length; i++) {
 /**
  * Draw level background onto canvas
  */
-const drawBackground = () => {
+const drawBackground = win => {
   canvas = adventurerWindow.document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   ctx.canvas.width = 1440;
@@ -26,7 +26,7 @@ const drawBackground = () => {
       for (const j in tiles) {
         const layers = tiles[j].split(",");
         for (const k in layers) {
-          if (layers[k].length > 0) {
+          if (layers[k].length > 0 && BACKGROUND_TILES[layers[k]]) {
             const cord = BACKGROUND_TILES[layers[k]];
             ctx.drawImage(
               asset,
@@ -48,15 +48,7 @@ const drawBackground = () => {
       }
     }
 
-    adventurerWindow.document
-      .getElementsByTagName("body")[0]
-      .appendChild(canvas);
-    princessWindow.document
-      .getElementsByTagName("body")[0]
-      .appendChild(cloneCanvas(canvas));
-    endingWindow.document
-      .getElementsByTagName("body")[0]
-      .appendChild(cloneCanvas(canvas));
+    win.document.getElementsByTagName("body")[0].appendChild(canvas);
   };
   asset.src = "assets/background.png";
 };
