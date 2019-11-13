@@ -1,8 +1,8 @@
-let canvas;
 const path = new Array(9);
 for (var i = 0; i < path.length; i++) {
   path[i] = new Array(16).fill(0);
 }
+const PARALLAX_SCROLL_SPEEDS = [10, 20, 30, 40];
 
 /* Public functions */
 
@@ -10,7 +10,7 @@ for (var i = 0; i < path.length; i++) {
  * Draw level background onto canvas
  */
 const drawBackground = win => {
-  canvas = adventurerWindow.document.createElement("canvas");
+  const canvas = adventurerWindow.document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   ctx.canvas.width = 1440;
   ctx.canvas.height = 864;
@@ -51,6 +51,28 @@ const drawBackground = win => {
     win.document.getElementsByTagName("body")[0].appendChild(canvas);
   };
   asset.src = "assets/background.png";
+
+  return canvas;
+};
+
+const loadParallaxBackground = () => {
+  setParallax(document.getElementsByClassName("tile2")[0], -0.3);
+  setParallax(document.getElementsByClassName("tile3")[0], 0.5);
+  setParallax(document.getElementsByClassName("tile4")[0], 1);
+};
+
+const setParallax = (img, speed) => {
+  const loop = () => {
+    let pos = Number(
+      img.style.backgroundPositionX.substring(
+        0,
+        img.style.backgroundPositionX.length - 2
+      )
+    );
+    pos = (pos + speed) % window.innerWidth;
+    img.style.backgroundPositionX = pos + "px";
+  };
+  setInterval(loop, 50);
 };
 
 const getLevelContent = () => {

@@ -27,9 +27,10 @@
   width: 64px;
   height: 64px;
   background-size: cover;
+  visibility: hidden;
 }
 
-.dialog-box {
+/* .dialog-box {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -43,7 +44,7 @@
   padding: 42px 16px 16px 16px;
   line-height: 26px;
   letter-spacing: -1px;
-}
+} */
 
 canvas {
   position: absolute;

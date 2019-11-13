@@ -1,7 +1,13 @@
+const titleScreen = document.getElementsByTagName("section")[0];
+const background = document.getElementsByClassName("parallax-container")[0];
+
 const startGame = () => {
   // start game
+  titleScreen.style.visibility = "hidden";
+  background.style.visibility = "visible";
   loadPrincess();
   loadAdventurer();
+  loadParallaxBackground();
 };
 
 const endGame = () => {
@@ -15,7 +21,7 @@ const endGame = () => {
       location=no,
       status=1,
       scrollbars=no,
-      width=380,
+      width=340,
       height=272,
       screenX=${window.outerWidth},
       screenY=0
