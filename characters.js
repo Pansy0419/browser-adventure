@@ -1,6 +1,7 @@
 let adventurer;
 let adventurerWindow;
 let princessWindow;
+let adventurerCanvas;
 
 /* Public functions */
 
@@ -36,7 +37,7 @@ const loadAdventurer = () => {
     adventurer = adventurerWindow.document.getElementsByClassName(
       "adventurer"
     )[0];
-    drawBackground(adventurerWindow);
+    adventurerCanvas = drawBackground(adventurerWindow);
     setUpAdventurerMovements();
   });
 

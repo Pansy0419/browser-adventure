@@ -54,25 +54,25 @@ const moveInDir = (win, dir) => {
     case "UP":
       if (canMove(centerX, centerY - RUN_SPEED)) {
         win.moveBy(0, -RUN_SPEED);
-        canvas.style.top = -(win.screenY + 14) + "px";
+        adventurerCanvas.style.top = -(win.screenY + 14) + "px";
       }
       break;
     case "LEFT":
       if (canMove(centerX - RUN_SPEED, centerY)) {
         win.moveBy(-RUN_SPEED, 0);
-        canvas.style.left = -win.screenX + "px";
+        adventurerCanvas.style.left = -win.screenX + "px";
       }
       break;
     case "DOWN":
       if (canMove(centerX, centerY + RUN_SPEED)) {
         win.moveBy(0, RUN_SPEED);
-        canvas.style.top = -(win.screenY + 14) + "px";
+        adventurerCanvas.style.top = -(win.screenY + 14) + "px";
       }
       break;
     case "RIGHT":
       if (canMove(centerX + RUN_SPEED, centerY)) {
         win.moveBy(RUN_SPEED, 0);
-        canvas.style.left = -win.screenX + "px";
+        adventurerCanvas.style.left = -win.screenX + "px";
       }
       break;
     default:
