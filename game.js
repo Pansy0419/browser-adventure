@@ -1,5 +1,7 @@
 const titleScreen = document.getElementsByTagName("section")[0];
 const background = document.getElementsByClassName("parallax-container")[0];
+const backgroundAudio = document.getElementById("background");
+const winAudio = document.getElementById("win");
 
 const startGame = () => {
   // start game
@@ -8,11 +10,13 @@ const startGame = () => {
   loadPrincess();
   loadAdventurer();
   loadParallaxBackground();
+  backgroundAudio.play();
 };
 
 const endGame = () => {
   adventurerWindow.close();
   princessWindow.close();
+  backgroundAudio.pause();
   endingWindow = window.open(
     "./ending/index.html",
     "endingWindow",
@@ -22,7 +26,7 @@ const endGame = () => {
       status=1,
       scrollbars=no,
       width=340,
-      height=272,
+      height=220,
       screenX=${window.outerWidth},
       screenY=0
     `
@@ -30,5 +34,6 @@ const endGame = () => {
 
   endingWindow.addEventListener("load", event => {
     drawBackground(endingWindow);
+    win.play();
   });
 };
