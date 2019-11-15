@@ -72,13 +72,12 @@ const loadButtons = () => {
   clearButton.onclick = clearCanvas;
 
   doneButton.onclick = () => {
-    for (const i in tiles) {
+    for (let i = 0; i < tiles.length; i++) {
       tiles[i] = tiles[i].join(" ");
     }
-
     const levelText = tiles.join("\n");
-    console.log(levelText);
-    window.localStorage.setItem("level1", levelText);
+
+    addCustomLevel(levelText);
     window.location.href = "../index.html";
   };
 };

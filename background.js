@@ -2,7 +2,6 @@ const path = new Array(9);
 for (var i = 0; i < path.length; i++) {
   path[i] = new Array(16).fill(0);
 }
-const PARALLAX_SCROLL_SPEEDS = [10, 20, 30, 40];
 
 /* Public functions */
 
@@ -16,7 +15,7 @@ const drawBackground = win => {
   ctx.canvas.height = 864;
   ctx.imageSmoothingEnabled = false;
 
-  const data = getLevelContent();
+  const data = getLevelContent(params["level"]);
   const asset = new Image();
 
   asset.onload = function() {
@@ -73,14 +72,4 @@ const setParallax = (img, speed) => {
     img.style.backgroundPositionX = pos + "px";
   };
   setInterval(loop, 50);
-};
-
-const getLevelContent = () => {
-  const levelType = params["level"].charAt(0);
-  const levelIndex = parseInt(params["level"].substring(1));
-
-  if (levelType == "D") {
-    // Default levels
-    return LEVELS[levelIndex];
-  }
 };

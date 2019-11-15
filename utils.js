@@ -18,18 +18,32 @@ function getParamsFromUrl() {
   return result;
 }
 
-function cloneCanvas(oldCanvas) {
-  //create a new canvas
-  var newCanvas = document.createElement("canvas");
-  var context = newCanvas.getContext("2d");
+// levels
+function getCustomLevelCount() {
+  const count = window.localStorage.getItem("level_count");
+  return count ? parseInt(count) : 0;
+}
 
-  //set dimensions
-  newCanvas.width = oldCanvas.width;
-  newCanvas.height = oldCanvas.height;
+function getCustomLevel(idx) {
+  return window.localStorage.getItem(`level_C${idx}`);
+}
 
-  //apply the old canvas to the new one
-  context.drawImage(oldCanvas, 0, 0);
+function addCustomLevel(content) {
+  const levelIdx = getCustomLevelCount() + 1;
+  window.localStorage.setItem(`level_C${levelIdx}`, content);
+  window.localStorage.setItem("level_count", levelIdx);
+}
 
-  //return the new canvas
-  return newCanvas;
+function getLevelContent(level) {
+  const levelType = level.charAt(0);
+  const levelIndex = parseInt(level.substring(1));
+
+  console.log(levelType, levelIndex);
+
+  if (levelType == "D") {
+    // Default levels
+    return LEVELS[levelIndex - 1];
+  } else {
+    return getCustomLevel(levelIndex);
+  }
 }

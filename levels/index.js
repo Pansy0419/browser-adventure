@@ -4,19 +4,27 @@ const params = getParamsFromUrl();
 console.log;
 window.onload = () => {
   // populate original levels
-  for (const i in LEVELS) {
-    const button = document.createElement("button");
-    // setting button content :(
-    button.innerHTML = (Number(i) + 1).toString();
-
-    button.onclick = () => {
-      if (params["edit"] === "true") {
-        window.location.href = `../level_designer/index.html?level=D${i}`;
-      } else {
-        window.location.href = `../index.html?level=D${i}`;
-      }
-    };
-
-    originalLevels.appendChild(button);
+  for (let i = 0; i < LEVELS.length; i++) {
+    originalLevels.appendChild(createLevelButton(i, false));
   }
+
+  for (let i = 0; i < getCustomLevelCount(); i++) {
+    customLevels.appendChild(createLevelButton(i, true));
+  }
+};
+
+const createLevelButton = (idx, isCustom) => {
+  const button = document.createElement("button");
+  const levelTag = `${isCustom ? "C" : "D"}${idx + 1}`;
+  button.innerHTML = (idx + 1).toString();
+
+  button.onclick = () => {
+    if (params["edit"] === "true") {
+      window.location.href = `../level_designer/index.html?level=${levelTag}`;
+    } else {
+      window.location.href = `../index.html?level=${levelTag}`;
+    }
+  };
+
+  return button;
 };

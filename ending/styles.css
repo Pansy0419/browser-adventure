@@ -22,11 +22,13 @@
   margin-right: 48px;
 }
 
-.bubble-adventurer {
+.bubble {
   background-image: url("../assets/thought-bubble.png");
   width: 64px;
   height: 64px;
   background-size: cover;
+  position: relative;
+  transform: translateX(-20px);
   visibility: hidden;
 }
 
@@ -51,4 +53,14 @@ canvas {
   right: 0;
   top: 0;
   z-index: -1;
+}
+
+.emoji {
+  background-image: url(../assets/emojis.png);
+  background-size: 324px 36px;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  right: 7px;
+  top: 3px;
 }

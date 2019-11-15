@@ -1,17 +1,10 @@
 const tiles = new Array(9);
 for (var i = 0; i < tiles.length; i++) {
-  tiles[i] = new Array(16).fill("");
+  tiles[i] = new Array(15).fill("");
 }
 
 const populateTiles = () => {
-  const levelType = params["level"].charAt(0);
-  const levelIndex = parseInt(params["level"].substring(1));
-  let levelContent;
-
-  if (levelType == "D") {
-    // Default levels
-    levelContent = LEVELS[levelIndex];
-  }
+  const levelContent = getLevelContent(params["level"]);
 
   const lines = levelContent.split(/\r?\n/);
   for (const i in lines) {
