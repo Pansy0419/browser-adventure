@@ -13,6 +13,11 @@ const loadCharacters = () => {
   loadPrincess();
 };
 
+const unloadCharacters = () => {
+  adventurerWindow && unloadAdventurer();
+  princessWindow && unloadPrincess();
+};
+
 /* Helper functions */
 
 const loadAdventurer = () => {
@@ -61,6 +66,15 @@ const loadPrincess = () => {
       screenY=0
     `
   );
+};
+
+const unloadAdventurer = () => {
+  unloadMovement(adventurer);
+  adventurerWindow.close();
+};
+
+const unloadPrincess = () => {
+  princessWindow.close();
 };
 
 const setUpAdventurerMovements = () => {

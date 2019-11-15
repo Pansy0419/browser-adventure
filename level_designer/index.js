@@ -78,6 +78,6 @@ const loadButtons = () => {
     const levelText = tiles.join("\n");
 
     addCustomLevel(levelText);
-    window.location.href = "../index.html";
+    window.history.back();
   };
 };

@@ -11,6 +11,8 @@ window.onload = () => {
   for (let i = 0; i < getCustomLevelCount(); i++) {
     customLevels.appendChild(createLevelButton(i, true));
   }
+
+  customLevels.appendChild(createAddLevelButton());
 };
 
 const createLevelButton = (idx, isCustom) => {
@@ -26,5 +28,15 @@ const createLevelButton = (idx, isCustom) => {
     }
   };
 
+  return button;
+};
+
+const createAddLevelButton = () => {
+  const button = document.createElement("button");
+  button.innerHTML = "+";
+  button.classList.add("new-level");
+  button.onclick = () => {
+    window.location.href = `../level_designer/index.html`;
+  };
   return button;
 };

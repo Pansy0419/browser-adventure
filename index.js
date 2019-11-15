@@ -16,3 +16,12 @@ window.onload = () => {
     };
   }
 };
+
+window.onbeforeunload = function() {
+  unloadCharacters();
+  backgroundAudio.pause();
+};
+
+window.addEventListener("beforeunload", function(e) {
+  unloadCharacters();
+});
