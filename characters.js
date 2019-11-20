@@ -21,6 +21,11 @@ const unloadCharacters = () => {
 /* Helper functions */
 
 const loadAdventurer = () => {
+  const adventurerOrigin = [
+    window.screenX + container.left,
+    window.screenY + container.bottom - 170
+  ];
+
   adventurerWindow = window.open(
     "./adventurer/index.html",
     "adventurerWindow",
@@ -31,8 +36,8 @@ const loadAdventurer = () => {
       scrollbars=no,
       width=226,
       height=200,
-      screenX=0,
-      screenY=${window.outerHeight}
+      screenX=${adventurerOrigin[0]},
+      screenY=${adventurerOrigin[1]}
     `
   );
 
@@ -52,6 +57,11 @@ const loadAdventurer = () => {
 };
 
 const loadPrincess = () => {
+  const princessOrigin = [
+    window.screenX + container.right - 226,
+    window.screenY + container.top + 82
+  ];
+
   princessWindow = window.open(
     "./princess/index.html",
     "princessWindow",
@@ -62,8 +72,8 @@ const loadPrincess = () => {
       scrollbars=no,
       width=226,
       height=200,
-      screenX=${window.outerWidth},
-      screenY=0
+      screenX=${princessOrigin[0]},
+      screenY=${princessOrigin[1]}
     `
   );
 };

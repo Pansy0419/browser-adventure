@@ -47,32 +47,34 @@ const onFinishMove = (sprite, dir) => {
  * @param {*} dir direction
  */
 const moveInDir = (win, dir) => {
-  const centerX = win.screenX + win.outerWidth / 2;
-  const centerY = win.screenY + win.outerHeight / 2;
+  const winX = adventurerWindow.screenX - window.screenX - container.left;
+  const centerX = winX + win.outerWidth / 2;
+  const winY = adventurerWindow.screenY - window.screenY - container.top;
+  const centerY = winY + win.outerHeight / 2;
 
   switch (dir) {
     case "UP":
       if (canMove(centerX, centerY - RUN_SPEED)) {
         win.moveBy(0, -RUN_SPEED);
-        adventurerCanvas.style.top = -(win.screenY + 14) + "px";
+        adventurerCanvas.style.top = -(winY + 34) + "px";
       }
       break;
     case "LEFT":
       if (canMove(centerX - RUN_SPEED, centerY)) {
         win.moveBy(-RUN_SPEED, 0);
-        adventurerCanvas.style.left = -win.screenX + "px";
+        adventurerCanvas.style.left = -winX + "px";
       }
       break;
     case "DOWN":
       if (canMove(centerX, centerY + RUN_SPEED)) {
         win.moveBy(0, RUN_SPEED);
-        adventurerCanvas.style.top = -(win.screenY + 14) + "px";
+        adventurerCanvas.style.top = -(winY + 34) + "px";
       }
       break;
     case "RIGHT":
       if (canMove(centerX + RUN_SPEED, centerY)) {
         win.moveBy(RUN_SPEED, 0);
-        adventurerCanvas.style.left = -win.screenX + "px";
+        adventurerCanvas.style.left = -winX + "px";
       }
       break;
     default:
@@ -154,7 +156,7 @@ const canMove = (x, y) => {
     return false;
 
   // magic, don't touch
-  if (y < 148 || y + 102 > window.outerHeight) return false;
+  if (y < 155 || y > 757) return false;
 
   const getXIndex = x => Math.floor(x / BACKGROUND_TILE_SIZE);
   const getYIndex = y => Math.floor(y / BACKGROUND_TILE_SIZE);

@@ -17,6 +17,11 @@ const endGame = () => {
   adventurerWindow.close();
   princessWindow.close();
   backgroundAudio.pause();
+
+  const endingOrigin = [
+    window.screenX + container.right - 340,
+    window.screenY + container.top + 82
+  ];
   endingWindow = window.open(
     "./ending/index.html",
     "endingWindow",
@@ -27,8 +32,8 @@ const endGame = () => {
       scrollbars=no,
       width=340,
       height=220,
-      screenX=${window.outerWidth},
-      screenY=0
+      screenX=${endingOrigin[0]},
+      screenY=${endingOrigin[1]}
     `
   );
 

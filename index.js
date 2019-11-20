@@ -1,6 +1,9 @@
 const startButton = document.getElementsByTagName("button")[0];
 const designerButton = document.getElementsByTagName("button")[1];
 const params = getParamsFromUrl();
+const container = document
+  .getElementsByClassName("parallax-container")[0]
+  .getBoundingClientRect();
 let endingWindow;
 
 window.onload = () => {
