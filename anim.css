@@ -83,7 +83,7 @@ body {
 /* Princess Animation Styles */
 
 .princess {
-  background-image: url("../assets/princess_stand.png");
+  background-image: url("./assets/princess_stand.png");
   -webkit-animation: animPricess 1.5s steps(4) infinite;
   animation: animPricess 1.5s steps(4) infinite;
   background-size: cover;
