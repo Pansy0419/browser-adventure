@@ -1,4 +1,4 @@
-# browser-adventure
+# Browser Adventure
 
 ![Game Demo](./assets/game-demo.gif)
 
