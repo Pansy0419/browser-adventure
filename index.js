@@ -29,7 +29,10 @@ window.onload = () => {
 
 window.onbeforeunload = function() {
   unloadCharacters();
+  endingWindow && endingWindow.close();
   backgroundAudio.pause();
+  winAudio.pause();
+  loseAudio.pause();
 };
 
 window.addEventListener("beforeunload", function(e) {

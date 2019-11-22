@@ -5,6 +5,7 @@ const winAudio = document.getElementById("win");
 const loseAudio = document.getElementById("lose");
 const endingControls = document.getElementsByClassName("ending")[0];
 const endingTitle = document.getElementById("ending-title");
+let win = false;
 
 const startGame = () => {
   // start game
@@ -17,16 +18,19 @@ const startGame = () => {
 };
 
 const quitGame = () => {
-  backgroundAudio.pause();
-  loseAudio.play();
-  adventurerWindow.close();
-  princessWindow.close();
+  if (!win) {
+    backgroundAudio.pause();
+    loseAudio.play();
+    adventurerWindow.close();
+    princessWindow.close();
 
-  endingTitle.innerText = "Game Ended";
-  endingControls.style.visibility = "visible";
+    endingTitle.innerText = "Game Ended";
+    endingControls.style.visibility = "visible";
+  }
 };
 
 const endGame = () => {
+  win = true;
   adventurerWindow.close();
   princessWindow.close();
   backgroundAudio.pause();
@@ -52,10 +56,10 @@ const endGame = () => {
 
   endingWindow.addEventListener("load", event => {
     drawBackground(endingWindow);
-    win.play();
+    winAudio.play();
   });
 
-  win.onended = () => {
+  winAudio.onended = () => {
     setTimeout(() => {
       endingWindow.close();
       endingControls.style.visibility = "visible";
