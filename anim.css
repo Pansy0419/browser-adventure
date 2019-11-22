@@ -36,13 +36,13 @@ body {
 .runForward {
   -webkit-animation: animRun 800ms steps(8) infinite;
   animation: animRun 800ms steps(8) infinite;
-  background-image: url("../assets/adventurer_run_forward.png");
+  background-image: url("./assets/adventurer_run_forward.png");
 }
 
 .runBackward {
   -webkit-animation: animRun 800ms steps(8) infinite;
   animation: animRun 800ms steps(8) infinite;
-  background-image: url("../assets/adventurer_run_backward.png");
+  background-image: url("./assets/adventurer_run_backward.png");
 }
 
 /* Adventurer Animations */
