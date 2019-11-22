@@ -1,4 +1,4 @@
-# browser-adventure
+# Browser Adventure
 
 ![Game Demo](./assets/game-demo.gif)
 
@@ -10,6 +10,7 @@
 ## Level Designer
 
 ![Level Designer Demo](./assets/level-designer-demo.gif)
+
 When you are bored of the default levels, you can create your own custom level using the level designer tool. You can choose to build on an existing level map, or start with an blank canvas.
 
 To use the level designer, drag tiles from the tile picker on the right and drop it on the desired slots of the canvas on the right. When you are done editing, click "Done" to save the new level to your custom level list.
@@ -17,7 +18,7 @@ To use the level designer, drag tiles from the tile picker on the right and drop
 ## Credits
 
 - Inspired by [flappy-windows](https://github.com/charliegerard/flappy-windows) by charliegerardv
-- Background tiles: Multiple authors, see [here](./Attibution.txt)
+- Background tiles: Multiple authors, see [here](https://github.com/Pansy0419/browser-adventure/blob/master/Attribution.txt)
 - Princess sprite set: [GrafxKid](https://opengameart.org/content/bushly-and-princess-sera)
 - Adventurer sprite set: [Elthen (Ahmet Avci)](https://www.patreon.com/elthen)
 - Music and sound effects: [Yubatake](https://opengameart.org/content/jrpg-collection)
