@@ -8,7 +8,7 @@ body {
 
 .adventurer {
   background-size: cover;
-  background-image: url("../assets/adventurer_stand.png");
+  background-image: url("./assets/adventurer_stand.png");
   width: 110px;
   height: 160px;
   -webkit-animation: animStand 3s steps(13) infinite;
@@ -16,7 +16,7 @@ body {
 }
 
 .blush {
-  background-image: url("../assets/adventurer_stand_title.png");
+  background-image: url("./assets/adventurer_stand_title.png");
   -webkit-animation: animBlush 2s steps(8) infinite;
   animation: animBlush 2s steps(8) infinite;
 }
@@ -24,13 +24,13 @@ body {
 .runRight {
   -webkit-animation: animRun 800ms steps(8) infinite;
   animation: animRun 800ms steps(8) infinite;
-  background-image: url("../assets/adventurer_run_right.png");
+  background-image: url("./assets/adventurer_run_right.png");
 }
 
 .runLeft {
   -webkit-animation: animRun 800ms steps(8) infinite;
   animation: animRun 800ms steps(8) infinite;
-  background-image: url("../assets/adventurer_run_left.png");
+  background-image: url("./assets/adventurer_run_left.png");
 }
 
 .runForward {
