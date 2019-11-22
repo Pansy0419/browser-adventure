@@ -29,8 +29,8 @@
         </div>
         <p>Epic RPG adventure with your browser windows</p>
         <div class="buttons">
-          <button>Play</button>
-          <button>Level Designer</button>
+          <button class="levels-button">Play</button>
+          <button class="designer-button">Level Designer</button>
         </div>
       </main>
 
@@ -48,9 +48,9 @@
       <div class="parallax-tile tile2"></div>
       <div class="parallax-tile tile1"></div>
       <div class="ending">
-        <h2>Level Completed!</h1>
-        <button>Choose Level</button>
-        <button>Back to Title</button>
+        <h2 id="ending-title">Level Completed!</h1>
+        <button class="levels-button">Choose Level</button>
+        <button class="title-button">Back to Title</button>
       </div>
     </section>
     <footer>
@@ -68,6 +68,11 @@
     <audio
       id="win"
       src="./assets/sounds/JRPG_winBattle.ogg"
+      preload="auto"
+    ></audio>
+    <audio
+      id="lose"
+      src="./assets/sounds/JRPG_gameOver.ogg"
       preload="auto"
     ></audio>
     <script src="utils.js"></script>

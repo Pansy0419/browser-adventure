@@ -43,13 +43,12 @@ const loadAdventurer = () => {
 
   adventurerWindow.focus();
 
-  preventResize(adventurerWindow);
+  setupSprite(adventurerWindow);
 
   adventurerWindow.addEventListener("load", event => {
     adventurer = adventurerWindow.document.getElementsByClassName(
       "adventurer"
     )[0];
-    adventurerCanvas = drawBackground(adventurerWindow);
     setUpAdventurerMovements();
   });
 };
@@ -75,11 +74,7 @@ const loadPrincess = () => {
     `
   );
 
-  preventResize(princessWindow);
-
-  princessWindow.addEventListener("load", event => {
-    drawBackground(princessWindow);
-  });
+  setupSprite(princessWindow);
 };
 
 const unloadAdventurer = () => {
@@ -111,13 +106,22 @@ const setUpAdventurerMovements = () => {
       onFinishMove(adventurer, DIRECTION_KEYS[event.key]);
     }
   });
+
+  adventurerWindow.onclose = () => {
+    quitGame();
+  };
 };
 
-const preventResize = win => {
+const setupSprite = win => {
   win.addEventListener("resize", e => {
-    // const x = win.screenX;
-    // const y = win.screenY - SPRITE_WINDOW_OUTER_HEIGHT + win.outerHeight - 27; // idk why this number
     win.resizeTo(SPRITE_WINDOW_WIDTH, SPRITE_WINDOW_INNER_HEIGHT + 50);
-    // win.moveTo(x, y);
   });
+
+  win.addEventListener("load", event => {
+    drawBackground(win);
+  });
+
+  win.onbeforeunload = () => {
+    quitGame();
+  };
 };

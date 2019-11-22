@@ -1,5 +1,6 @@
-const startButton = document.getElementsByTagName("button")[0];
-const designerButton = document.getElementsByTagName("button")[1];
+const levelsButtons = document.getElementsByClassName("levels-button");
+const designerButton = document.getElementsByClassName("designer-button")[0];
+const titleButton = document.getElementsByClassName("title-button")[0];
 const params = getParamsFromUrl();
 const container = document
   .getElementsByClassName("parallax-container")[0]
@@ -8,10 +9,16 @@ let endingWindow;
 
 window.onload = () => {
   if (params["level"] != undefined) {
+    levelsButtons[1].onclick = () => {
+      window.location.href = "./levels/index.html?edit=false";
+    };
+    titleButton.onclick = () => {
+      window.location.href = "index.html";
+    };
     startGame();
   } else {
     // title screen
-    startButton.onclick = () => {
+    levelsButtons[0].onclick = () => {
       window.location.href = "./levels/index.html?edit=false";
     };
     designerButton.onclick = () => {

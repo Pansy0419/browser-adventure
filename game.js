@@ -2,6 +2,9 @@ const titleScreen = document.getElementsByTagName("section")[0];
 const background = document.getElementsByClassName("parallax-container")[0];
 const backgroundAudio = document.getElementById("background");
 const winAudio = document.getElementById("win");
+const loseAudio = document.getElementById("lose");
+const endingControls = document.getElementsByClassName("ending")[0];
+const endingTitle = document.getElementById("ending-title");
 
 const startGame = () => {
   // start game
@@ -14,11 +17,13 @@ const startGame = () => {
 };
 
 const quitGame = () => {
+  backgroundAudio.pause();
+  loseAudio.play();
   adventurerWindow.close();
   princessWindow.close();
-  backgroundAudio.pause();
 
-  window.history.back();
+  endingTitle.innerText = "Game Ended";
+  endingControls.style.visibility = "visible";
 };
 
 const endGame = () => {
@@ -53,6 +58,7 @@ const endGame = () => {
   win.onended = () => {
     setTimeout(() => {
       endingWindow.close();
+      endingControls.style.visibility = "visible";
     }, 1000);
   };
 };
