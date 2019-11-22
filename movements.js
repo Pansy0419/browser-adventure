@@ -1,5 +1,7 @@
+// TODO: THIS FILE IS A MESS :(
 const dirs = {};
 const ids = {};
+const pos = [];
 
 /**
  * Set up sprite movement
@@ -8,6 +10,9 @@ const ids = {};
  */
 const loadMovement = (sprite, win) => {
   dirs[sprite] = new Set();
+  pos.push(win.screenX);
+  pos.push(win.screenY);
+  console.log(pos);
   ids[sprite] = setInterval(function() {
     move(win, sprite);
   }, 10);
@@ -80,12 +85,19 @@ const moveInDir = (win, dir) => {
     default:
       break;
   }
+  pos[0] = win.screenX;
+  pos[1] = win.screenY;
 };
 
 /* Helper functions */
 
 // process moves in current time interval
 const move = (win, sprite) => {
+  // fix position
+  if (win.screenX !== pos[0] || win.screenY !== pos[1]) {
+    win.moveTo(pos[0], pos[1]);
+  }
+
   const curDirs = dirs[sprite];
   // special cases
   if (

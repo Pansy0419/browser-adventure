@@ -13,6 +13,14 @@ const startGame = () => {
   backgroundAudio.play();
 };
 
+const quitGame = () => {
+  adventurerWindow.close();
+  princessWindow.close();
+  backgroundAudio.pause();
+
+  window.history.back();
+};
+
 const endGame = () => {
   adventurerWindow.close();
   princessWindow.close();
@@ -41,4 +49,10 @@ const endGame = () => {
     drawBackground(endingWindow);
     win.play();
   });
+
+  win.onended = () => {
+    setTimeout(() => {
+      endingWindow.close();
+    }, 1000);
+  };
 };
