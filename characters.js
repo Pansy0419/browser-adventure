@@ -49,6 +49,7 @@ const loadAdventurer = () => {
     adventurer = adventurerWindow.document.getElementsByClassName(
       "adventurer"
     )[0];
+    adventurerCanvas = drawBackground(adventurerWindow);
     setUpAdventurerMovements();
   });
 };
@@ -75,6 +76,10 @@ const loadPrincess = () => {
   );
 
   setupSprite(princessWindow);
+
+  princessWindow.addEventListener("load", event => {
+    drawBackground(princessWindow);
+  });
 };
 
 const unloadAdventurer = () => {
@@ -115,10 +120,6 @@ const setUpAdventurerMovements = () => {
 const setupSprite = win => {
   win.addEventListener("resize", e => {
     win.resizeTo(SPRITE_WINDOW_WIDTH, SPRITE_WINDOW_INNER_HEIGHT + 50);
-  });
-
-  win.addEventListener("load", event => {
-    drawBackground(win);
   });
 
   win.onbeforeunload = () => {
