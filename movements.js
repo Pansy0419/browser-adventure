@@ -12,7 +12,6 @@ const loadMovement = (sprite, win) => {
   dirs[sprite] = new Set();
   pos.push(win.screenX);
   pos.push(win.screenY);
-  console.log(pos);
   ids[sprite] = setInterval(function() {
     move(win, sprite);
   }, 10);
@@ -54,14 +53,14 @@ const onFinishMove = (sprite, dir) => {
 const moveInDir = (win, dir) => {
   const winX = adventurerWindow.screenX - window.screenX - container.left;
   const centerX = winX + win.outerWidth / 2;
-  const winY = adventurerWindow.screenY - window.screenY - container.top;
-  const centerY = winY + win.outerHeight / 2;
+  const winY = adventurerWindow.screenY - window.screenY - container.top - 30;
+  const centerY = winY + 130;
 
   switch (dir) {
     case "UP":
       if (canMove(centerX, centerY - RUN_SPEED)) {
         win.moveBy(0, -RUN_SPEED);
-        adventurerCanvas.style.top = -(winY + 34) + "px";
+        adventurerCanvas.style.top = -winY + "px";
       }
       break;
     case "LEFT":
@@ -73,7 +72,7 @@ const moveInDir = (win, dir) => {
     case "DOWN":
       if (canMove(centerX, centerY + RUN_SPEED)) {
         win.moveBy(0, RUN_SPEED);
-        adventurerCanvas.style.top = -(winY + 34) + "px";
+        adventurerCanvas.style.top = -winY + "px";
       }
       break;
     case "RIGHT":
@@ -163,20 +162,20 @@ const clearAnimation = sprite => {
 const canMove = (x, y) => {
   if (
     x - SPRITE_WINDOW_WIDTH / 2 < 0 ||
-    x + SPRITE_WINDOW_WIDTH / 2 > window.outerWidth
+    x + SPRITE_WINDOW_WIDTH / 2 > backgroundTileSize * BACKGROUND_TILE_COL
   )
     return false;
 
   // magic, don't touch
-  if (y < 155 || y > 757) return false;
+  if (y < 180 || y > backgroundTileSize * 8 + 26) return false;
 
-  const getXIndex = x => Math.floor(x / BACKGROUND_TILE_SIZE);
-  const getYIndex = y => Math.floor(y / BACKGROUND_TILE_SIZE);
+  const getXIndex = x => Math.floor(x / backgroundTileSize);
+  const getYIndex = y => Math.floor(y / backgroundTileSize);
 
   return (
-    path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x - SPRITE_WIDTH / 2.5)] &&
-    path[getYIndex(y + SPRITE_HEIGHT / 2)][getXIndex(x + SPRITE_WIDTH / 2.5)] &&
-    path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x - SPRITE_WIDTH / 2.5)] &&
-    path[getYIndex(y + SPRITE_HEIGHT / 4)][getXIndex(x + SPRITE_WIDTH / 2.5)]
+    path[getYIndex(y + 40)][getXIndex(x - SPRITE_WIDTH / 2.5)] &&
+    path[getYIndex(y + 40)][getXIndex(x + SPRITE_WIDTH / 2.5)] &&
+    path[getYIndex(y + 20)][getXIndex(x - SPRITE_WIDTH / 2.5)] &&
+    path[getYIndex(y + 20)][getXIndex(x + SPRITE_WIDTH / 2.5)]
   );
 };

@@ -10,10 +10,10 @@ let win = false;
 const startGame = () => {
   // start game
   titleScreen.style.visibility = "hidden";
-  background.style.visibility = "visible";
+  background.style.display = "flex";
+  loadParallaxBackground();
   loadPrincess();
   loadAdventurer();
-  loadParallaxBackground();
   backgroundAudio.play();
 };
 

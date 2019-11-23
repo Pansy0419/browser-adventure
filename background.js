@@ -2,6 +2,8 @@ const path = new Array(9);
 for (var i = 0; i < path.length; i++) {
   path[i] = new Array(16).fill(0);
 }
+let backgroundTileSize;
+let container;
 
 /* Public functions */
 
@@ -9,10 +11,11 @@ for (var i = 0; i < path.length; i++) {
  * Draw level background onto canvas
  */
 const drawBackground = win => {
+  backgroundTileSize = getTileSizeFitToWindow();
   const canvas = adventurerWindow.document.createElement("canvas");
   const ctx = canvas.getContext("2d");
-  ctx.canvas.width = 1440;
-  ctx.canvas.height = 864;
+  ctx.canvas.width = Math.min(1440, BACKGROUND_TILE_COL * backgroundTileSize);
+  ctx.canvas.height = Math.min(864, BACKGROUND_TILE_ROW * backgroundTileSize);
   ctx.imageSmoothingEnabled = false;
 
   const data = getLevelContent(params["level"]);
@@ -33,10 +36,10 @@ const drawBackground = win => {
               cord[1] * ASSET_TILE_SIZE,
               ASSET_TILE_SIZE,
               ASSET_TILE_SIZE,
-              j * BACKGROUND_TILE_SIZE,
-              i * BACKGROUND_TILE_SIZE,
-              BACKGROUND_TILE_SIZE,
-              BACKGROUND_TILE_SIZE
+              j * backgroundTileSize,
+              i * backgroundTileSize,
+              backgroundTileSize,
+              backgroundTileSize
             );
 
             if (k == layers.length - 1 && /^[a-zA-Z()]$/.test(layers[k])) {
@@ -54,7 +57,29 @@ const drawBackground = win => {
   return canvas;
 };
 
+const getTileSizeFitToWindow = () => {
+  if (window.innerWidth < 1440 || window.innerHeight < 864) {
+    return Math.min(
+      window.innerWidth / BACKGROUND_TILE_COL,
+      window.innerHeight / BACKGROUND_TILE_ROW
+    );
+  }
+  return BACKGROUND_TILE_SIZE;
+};
+
 const loadParallaxBackground = () => {
+  if (window.innerHeight < 864 || window.innerWidth < 1440) {
+    const hRatio = window.innerHeight / 864;
+    const wRatio = window.innerWidth / 1440;
+    if (hRatio < wRatio) {
+      background.style.height = window.innerHeight + "px";
+      background.style.width = 1440 * hRatio + "px";
+    } else {
+      background.style.height = 864 * wRatio + "px";
+      background.style.width = window.innerWidth + "px";
+    }
+  }
+  container = background.getBoundingClientRect();
   setParallax(document.getElementsByClassName("tile2")[0], -0.3);
   setParallax(document.getElementsByClassName("tile3")[0], 0.5);
   setParallax(document.getElementsByClassName("tile4")[0], 1);

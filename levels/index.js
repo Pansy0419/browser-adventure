@@ -1,7 +1,7 @@
 const originalLevels = document.getElementsByClassName("levels")[0];
 const customLevels = document.getElementsByClassName("levels")[1];
 const params = getParamsFromUrl();
-console.log;
+
 window.onload = () => {
   // populate original levels
   for (let i = 0; i < LEVELS.length; i++) {

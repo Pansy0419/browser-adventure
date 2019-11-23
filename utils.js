@@ -38,8 +38,6 @@ function getLevelContent(level) {
   const levelType = level.charAt(0);
   const levelIndex = parseInt(level.substring(1));
 
-  console.log(levelType, levelIndex);
-
   if (levelType == "D") {
     // Default levels
     return LEVELS[levelIndex - 1];
