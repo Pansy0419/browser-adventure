@@ -7,20 +7,20 @@ let endingWindow;
 window.onload = () => {
   if (params["level"] != undefined) {
     levelsButtons[1].onclick = () => {
-      window.location.href = "./levels/index.html?edit=false";
+      window.location.href = "./levels/?edit=false";
     };
     titleButton.onclick = () => {
-      window.location.href = "index.html";
+      window.location.href = "./";
     };
     startGame();
   } else {
     // title screen
     checkDevice();
     levelsButtons[0].onclick = () => {
-      window.location.href = "./levels/index.html?edit=false";
+      window.location.href = "./levels/?edit=false";
     };
     designerButton.onclick = () => {
-      window.location.href = "./levels/index.html?edit=true";
+      window.location.href = "./levels/?edit=true";
     };
   }
 };

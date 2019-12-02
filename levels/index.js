@@ -22,9 +22,9 @@ const createLevelButton = (idx, isCustom) => {
 
   button.onclick = () => {
     if (params["edit"] === "true") {
-      window.location.href = `../level_designer/index.html?level=${levelTag}`;
+      window.location.href = `../level_designer/?level=${levelTag}`;
     } else {
-      window.location.href = `../index.html?level=${levelTag}`;
+      window.location.href = `../?level=${levelTag}`;
     }
   };
 
@@ -36,7 +36,7 @@ const createAddLevelButton = () => {
   button.innerHTML = "+";
   button.classList.add("new-level");
   button.onclick = () => {
-    window.location.href = `../level_designer/index.html`;
+    window.location.href = `../level_designer/`;
   };
   return button;
 };
