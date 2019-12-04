@@ -12,8 +12,7 @@ const startGame = () => {
   titleScreen.style.visibility = "hidden";
   background.style.display = "flex";
   loadParallaxBackground();
-  loadPrincess();
-  loadAdventurer();
+  loadCharacters();
   backgroundAudio.play();
 };
 
@@ -21,8 +20,7 @@ const quitGame = () => {
   if (!win) {
     backgroundAudio.pause();
     loseAudio.play();
-    adventurerWindow.close();
-    princessWindow.close();
+    unloadCharacters();
 
     endingTitle.innerText = "Game Ended";
     endingControls.style.visibility = "visible";
@@ -31,8 +29,7 @@ const quitGame = () => {
 
 const endGame = () => {
   win = true;
-  adventurerWindow.close();
-  princessWindow.close();
+  unloadCharacters();
   backgroundAudio.pause();
 
   const endingOrigin = [

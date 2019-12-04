@@ -12,7 +12,7 @@ let container;
  */
 const drawBackground = win => {
   backgroundTileSize = getTileSizeFitToWindow();
-  const canvas = adventurerWindow.document.createElement("canvas");
+  const canvas = win.document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   ctx.canvas.width = Math.min(1440, BACKGROUND_TILE_COL * backgroundTileSize);
   ctx.canvas.height = Math.min(864, BACKGROUND_TILE_ROW * backgroundTileSize);

@@ -1,7 +1,5 @@
 let adventurer;
-let adventurerWindow;
-let princessWindow;
-let adventurerCanvas;
+let princess;
 
 /* Public functions */
 
@@ -9,13 +7,14 @@ let adventurerCanvas;
  * Load all character windows
  */
 const loadCharacters = () => {
-  loadAdventurer();
   loadPrincess();
+  loadAdventurer();
+  adventurer.addCollisionTarget(princess, endGame);
 };
 
 const unloadCharacters = () => {
-  adventurerWindow && unloadAdventurer();
-  princessWindow && unloadPrincess();
+  princess && princess.close();
+  adventurer && adventurer.close();
 };
 
 /* Helper functions */
@@ -25,33 +24,7 @@ const loadAdventurer = () => {
     window.screenX + container.left,
     window.screenY + container.bottom - 170
   ];
-
-  adventurerWindow = window.open(
-    "./adventurer/index.html",
-    "adventurerWindow",
-    `
-      menubar=no,
-      location=no,
-      status=1,
-      scrollbars=no,
-      width=226,
-      height=200,
-      screenX=${adventurerOrigin[0]},
-      screenY=${adventurerOrigin[1]}
-    `
-  );
-
-  adventurerWindow.focus();
-
-  setupSprite(adventurerWindow);
-
-  adventurerWindow.addEventListener("load", event => {
-    adventurer = adventurerWindow.document.getElementsByClassName(
-      "adventurer"
-    )[0];
-    adventurerCanvas = drawBackground(adventurerWindow);
-    setUpAdventurerMovements();
-  });
+  adventurer = new Sprite([226, 200], adventurerOrigin, "adventurer", true);
 };
 
 const loadPrincess = () => {
@@ -59,36 +32,7 @@ const loadPrincess = () => {
     window.screenX + container.right - SPRITE_WINDOW_WIDTH,
     window.screenY + container.top + 82
   ];
-
-  princessWindow = window.open(
-    "./princess/index.html",
-    "princessWindow",
-    `
-      menubar=no,
-      location=no,
-      status=1,
-      scrollbars=no,
-      width=226,
-      height=200,
-      screenX=${princessOrigin[0]},
-      screenY=${princessOrigin[1]}
-    `
-  );
-
-  setupSprite(princessWindow);
-
-  princessWindow.addEventListener("load", event => {
-    drawBackground(princessWindow);
-  });
-};
-
-const unloadAdventurer = () => {
-  unloadMovement(adventurer);
-  adventurerWindow.close();
-};
-
-const unloadPrincess = () => {
-  princessWindow.close();
+  princess = new Sprite([226, 200], princessOrigin, "princess");
 };
 
 const setUpAdventurerMovements = () => {
