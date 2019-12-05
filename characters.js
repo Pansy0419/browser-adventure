@@ -1,5 +1,6 @@
 let adventurer;
 let princess;
+let slime;
 
 /* Public functions */
 
@@ -10,6 +11,9 @@ const loadCharacters = () => {
   loadPrincess();
   loadAdventurer();
   adventurer.addCollisionTarget(princess, endGame);
+  // adventurer.onMove = () => {
+
+  // }
 };
 
 const unloadCharacters = () => {

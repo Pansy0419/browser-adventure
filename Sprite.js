@@ -38,6 +38,9 @@ class Sprite {
     });
   }
 
+  /**
+   * Close the sprite window and clean up
+   */
   close() {
     clearInterval(this.animId);
     this._clearAnimation();
@@ -62,10 +65,14 @@ class Sprite {
     this.dirs.delete(dir);
   }
 
+  /**
+   * Invoke the given call back when this sprite collide with sprite s
+   * @param {*} s the target sprite
+   * @param {*} callback the function to invoke when collision happens
+   */
   addCollisionTarget(s, callback) {
     this.win.addEventListener("keydown", event => {
       if (event.key in DIRECTION_KEYS) {
-        console.log("move");
         if (checkCollision(this.win, s.win)) {
           callback();
         }
@@ -120,6 +127,9 @@ class Sprite {
     // handle movement
     for (const dir of this.dirs) {
       this._moveInDir(dir);
+    }
+    if (this.dirs.size > 0) {
+      this.onMove && this.onMove();
     }
 
     // handle animation
@@ -225,3 +235,5 @@ class Sprite {
     );
   };
 }
+
+class Slime extends Sprite {}
