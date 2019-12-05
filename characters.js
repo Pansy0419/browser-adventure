@@ -34,39 +34,3 @@ const loadPrincess = () => {
   ];
   princess = new Sprite([226, 200], princessOrigin, "princess");
 };
-
-const setUpAdventurerMovements = () => {
-  loadMovement(adventurer, adventurerWindow);
-
-  adventurerWindow.addEventListener("keydown", event => {
-    if (adventurer != undefined && event.key in DIRECTION_KEYS) {
-      onMove(adventurer, DIRECTION_KEYS[event.key]);
-      if (checkCollision(princessWindow, adventurerWindow)) {
-        endGame();
-      }
-    }
-    if (event.key === "q") {
-      quitGame();
-    }
-  });
-
-  adventurerWindow.addEventListener("keyup", event => {
-    if (adventurer != undefined && event.key in DIRECTION_KEYS) {
-      onFinishMove(adventurer, DIRECTION_KEYS[event.key]);
-    }
-  });
-
-  adventurerWindow.onclose = () => {
-    quitGame();
-  };
-};
-
-const setupSprite = win => {
-  win.addEventListener("resize", e => {
-    win.resizeTo(SPRITE_WINDOW_WIDTH, SPRITE_WINDOW_INNER_HEIGHT + 50);
-  });
-
-  win.onbeforeunload = () => {
-    quitGame();
-  };
-};
