@@ -21,25 +21,25 @@ body {
   animation: animBlush 2s steps(8) infinite;
 }
 
-.runRight {
+.adventurer_right {
   -webkit-animation: animRun 800ms steps(8) infinite;
   animation: animRun 800ms steps(8) infinite;
   background-image: url("./assets/adventurer_run_right.png");
 }
 
-.runLeft {
+.adventurer_left {
   -webkit-animation: animRun 800ms steps(8) infinite;
   animation: animRun 800ms steps(8) infinite;
   background-image: url("./assets/adventurer_run_left.png");
 }
 
-.runForward {
+.adventurer_forward {
   -webkit-animation: animRun 800ms steps(8) infinite;
   animation: animRun 800ms steps(8) infinite;
   background-image: url("./assets/adventurer_run_forward.png");
 }
 
-.runBackward {
+.adventurer_backward {
   -webkit-animation: animRun 800ms steps(8) infinite;
   animation: animRun 800ms steps(8) infinite;
   background-image: url("./assets/adventurer_run_backward.png");
@@ -103,5 +103,57 @@ body {
   }
   100% {
     background-position: 320px 0px;
+  }
+}
+
+.slime {
+  background-image: url("./assets/slime_stand.png");
+  -webkit-animation: animSlime 1s steps(10) infinite;
+  animation: animSlime 1s steps(10) infinite;
+  background-size: cover;
+  width: 160px;
+  height: 160px;
+  animation-play-state: running;
+}
+
+.slime_right {
+  -webkit-animation: animSlime 800ms steps(10) infinite;
+  animation: animSlime 800ms steps(10) infinite;
+  background-image: url("./assets/slime_run_right.png");
+}
+
+.slime_left {
+  -webkit-animation: animSlime 800mss steps(10) infinite;
+  animation: animSlime 800ms steps(10) infinite;
+  background-image: url("./assets/slime_run_left.png");
+}
+
+.slime_backward {
+  -webkit-animation: animSlime 800ms steps(10) infinite;
+  animation: animSlime 800ms steps(10) infinite;
+  background-image: url("./assets/slime_run_forward.png");
+}
+
+.slime_forward {
+  -webkit-animation: animSlimeReversed 800ms steps(10) infinite;
+  animation: animSlimeReversed 800ms steps(10) infinite;
+  background-image: url("./assets/slime_run_forward.png");
+}
+
+@keyframes animSlime {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 1600px 0px;
+  }
+}
+
+@keyframes animSlimeReversed {
+  0% {
+    background-position: 1600px 0px;
+  }
+  100% {
+    background-position: 0px 0px;
   }
 }

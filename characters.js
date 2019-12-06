@@ -10,15 +10,14 @@ let slime;
 const loadCharacters = () => {
   loadPrincess();
   loadAdventurer();
+  loadSlime();
   adventurer.addCollisionTarget(princess, endGame);
-  // adventurer.onMove = () => {
-
-  // }
 };
 
 const unloadCharacters = () => {
   princess && princess.close();
   adventurer && adventurer.close();
+  slime && slime.close();
 };
 
 /* Helper functions */
@@ -37,4 +36,12 @@ const loadPrincess = () => {
     window.screenY + container.top + 82
   ];
   princess = new Sprite([226, 200], princessOrigin, "princess");
+};
+
+const loadSlime = () => {
+  const slimeOrigin = [
+    window.screenX + container.left,
+    window.screenY + container.top + 82
+  ];
+  slime = new Slime([226, 200], slimeOrigin, "slime", true);
 };

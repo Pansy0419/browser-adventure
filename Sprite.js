@@ -16,6 +16,7 @@ class Sprite {
         screenY=${origin[1]}
       `
     );
+    this.name = name;
 
     this.win.addEventListener("load", () => {
       this.sprite = this.win.document.getElementsByClassName(name)[0];
@@ -195,13 +196,13 @@ class Sprite {
   _getClassFromDir(dir) {
     switch (dir) {
       case "LEFT":
-        return "runLeft";
+        return `${this.name}_left`;
       case "RIGHT":
-        return "runRight";
+        return `${this.name}_right`;
       case "UP":
-        return "runBackward";
+        return `${this.name}_backward`;
       case "DOWN":
-        return "runForward";
+        return `${this.name}_forward`;
     }
   }
 
@@ -236,4 +237,19 @@ class Sprite {
   };
 }
 
-class Slime extends Sprite {}
+class Slime extends Sprite {
+  moveTo(s) {
+    deltaX = s.pos[0] - this.pos[0];
+    deltaY = s.pos[1] - this.pos[1];
+    if (deltaX > RUN_SPEED) {
+      this.move("RIGHT");
+    } else if (deltaX < -RUN_SPEED) {
+      this.move("LEFT");
+    }
+    if (deltaY > RUN_SPEED) {
+      this.move("DOWN");
+    } else if (deltaY < -RUN_SPEED) {
+      this.move("UP");
+    }
+  }
+}
