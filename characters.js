@@ -12,6 +12,13 @@ const loadCharacters = () => {
   loadAdventurer();
   loadSlime();
   adventurer.addCollisionTarget(princess, endGame);
+  adventurer.onMove = () => {
+    slime.moveTo(adventurer);
+  };
+  adventurer.onStop = () => {
+    console.log("stop");
+    slime.stop();
+  };
 };
 
 const unloadCharacters = () => {
@@ -43,5 +50,5 @@ const loadSlime = () => {
     window.screenX + container.left,
     window.screenY + container.top + 82
   ];
-  slime = new Slime([226, 200], slimeOrigin, "slime", true);
+  slime = new Slime([226, 200], slimeOrigin);
 };

@@ -64,6 +64,9 @@ class Sprite {
    */
   finishMove(dir) {
     this.dirs.delete(dir);
+    if (this.dirs.size === 0) {
+      this.onStop && this.onStop();
+    }
   }
 
   /**
@@ -85,7 +88,7 @@ class Sprite {
     this.dirs = new Set();
     this.animId = setInterval(() => {
       this._processMoves();
-    }, 10);
+    }, 20);
   }
 
   _setUpMovementControls() {
@@ -217,7 +220,7 @@ class Sprite {
 
   _canMove = (x, y) => {
     if (
-      x - SPRITE_WINDOW_WIDTH / 2 < 0 ||
+      x - SPRITE_WINDOW_WIDTH / 2 < -1 ||
       x + SPRITE_WINDOW_WIDTH / 2 > backgroundTileSize * BACKGROUND_TILE_COL
     )
       return false;
@@ -238,9 +241,14 @@ class Sprite {
 }
 
 class Slime extends Sprite {
+  constructor(size, origin) {
+    super(size, origin, "slime");
+  }
+
   moveTo(s) {
-    deltaX = s.pos[0] - this.pos[0];
-    deltaY = s.pos[1] - this.pos[1];
+    const deltaX = s.pos[0] - this.pos[0];
+    const deltaY = s.pos[1] - this.pos[1];
+
     if (deltaX > RUN_SPEED) {
       this.move("RIGHT");
     } else if (deltaX < -RUN_SPEED) {
@@ -251,5 +259,9 @@ class Slime extends Sprite {
     } else if (deltaY < -RUN_SPEED) {
       this.move("UP");
     }
+  }
+
+  stop() {
+    this.dirs.clear();
   }
 }

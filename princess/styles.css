@@ -18,6 +18,6 @@
 canvas {
   position: absolute;
   right: 0;
-  top: 0;
+  top: -50px;
   z-index: -1;
 }

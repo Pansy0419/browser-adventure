@@ -1,4 +1,4 @@
-const RUN_SPEED = 1;
+const RUN_SPEED = 2;
 const ASSET_TILE_SIZE = 32;
 const BACKGROUND_TILE_SIZE = 96;
 const DIRECTION_KEYS = {
@@ -132,8 +132,8 @@ const LEVELS = [
     "J K K K H K K H K I 2,55 1 0 2 1 0 2",
   "0,P 1,P 2,55 0 1 2 0 1 2 0 1 2 0,54 P Q\n" +
     "2,Q 0,R 1,55,S 2,S 0,S 1,S 2,S 0,S 1,S 2,S 0,S 1,39 2,54,S R P\n" +
-    "1,57 2,57,T 0,58 1,T 2 0 1 2,T 0 1 2,T 0 1,56 2,57,T 0,57\n" +
-    "2 1,T 0,S 2,T 1 0,38 2 1,T 0 2 1,T 0,40 2 0,T 2\n" +
+    "Q P 0,55 1,T 2 0 1 2,T 0 1 2,T 0 1,56 2,57,T 0,57\n" +
+    "2,57 1,57,T 0,58,S 2,T 1 0,38 2 1,T 0 2 1,T 0,40 2 0,T 2\n" +
     "0,41 2,T 1 0,S 2,S 1,S 0,39 2,S 1,S 0,S 0,S 1,T 2,39 0,T 1\n" +
     "2,42 1,T 0 2 1,T 0 2 1,T 0 2 1 0,T 2 1,T 0\n" +
     "1,52 0,52,T 2,53 1 0,T 2,S 1,S 0,S 2,S 1,39 2,S 0,S 1 2,T 0\n" +
